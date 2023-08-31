@@ -51,6 +51,15 @@ Still in the making.
 
 6/ Place bet with 12 tokens: [0x8f218fb4de736bce66662335f895a0428344c540974734e763e2fdb901be4e3e](https://sepolia.etherscan.io/tx/0x8f218fb4de736bce66662335f895a0428344c540974734e763e2fdb901be4e3e) 
 
+7/ When trying to close the lottery, I get error:
 
+Error: execution reverted: "ERC721: caller is not token owner or approved" 
+
+Which seems odd, since tokenID = 65 (the one I'm trying to transfer when lottery is closed to the winner) has the same owner, as I can see in the console log:
+
+console.log(nftOwner);
+console.log(callerAddress);
+
+They have both the same address: 0x1121A584c4CdB01753F030e0b50FAC9475b503DD
 
 
