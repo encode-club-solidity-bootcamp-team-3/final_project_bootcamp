@@ -1,54 +1,35 @@
-import { ethers } from "hardhat";
-import { Lottery, Lottery__factory, LotteryToken, LotteryToken__factory } from "../typechain-types";
-import * as readline from "readline"; 
+import { ethers } from "ethers";
+import { Lottery, Lottery__factory } from "../typechain-types";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-let contract: Lottery; 
- 
-
-async function main() { 
-    const provider = new ethers.JsonRpcProvider(process.env.RPC_ENDPOINT_URL ?? "");
-    const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
-    
-    // Address of the deployed Lottery contract
-    const contractAddress = "0x8fee3143154bc482305010b3cd9546c7f6f1a667";
-
-    // Connect to the deployed Lottery contract
-    contract = Lottery__factory.connect(contractAddress, wallet);
-
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
-
-    // Now you can call the function to buy tokens
-   rl.question("Enter the amount of tokens to buy: ", async (amount) => {
-            try {
-                await buyTokens(amount);
-            } catch (error) {
-                console.log("Error buying tokens:\n", error);
-            }
-            rl.close();
-        });
+async function main() {
+  const provider = new ethers.JsonRpcProvider(process.env.RPC_ENDPOINT_URL ?? "");
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
   
-}
+  // Replace with the actual contract address
+  const lotteryContractAddress = "0x8fee3143154bc482305010b3cd9546c7f6f1a667";
+  
+  // Load the contract ABI
+  const lotteryContractABI = require("../artifacts/contracts/Lottery.sol/Lottery.json").abi;
+  
+  // Create an instance of the Lottery contract
+  const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet) as unknown as Lottery;
+   
+  const etherAmount = 0.01; // Change this to the desired amount
 
-async function buyTokens(amount: string) {
+  // Convert the Ether amount to wei
+  const weiAmount = ethers.parseEther(etherAmount.toString());
 
-    const provider = new ethers.JsonRpcProvider(process.env.RPC_ENDPOINT_URL ?? "");
-    const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
-     
+  // Call the purchaseTokens function and send Ether
+  const purchaseTx = await lotteryContract.connect(wallet).purchaseTokens(weiAmount, { value: weiAmount });
 
-    const tx = await contract.purchaseTokens(ethers.parseEther(String(amount)));
-    
-    // Wait for the transaction to be mined
-    const receipt = await tx.wait();
-
-    console.log(`Tokens bought (${receipt?.hash})\n`);
+  const purchaseReceipt = await purchaseTx.wait();
+  //console.log(`Tokens purchased: ${ethers.formatUnits(tokenAmount)} tokens`);
+  console.log("Transaction receipt:", purchaseReceipt);
 }
 
 main().catch((error) => {
-    console.error("Error in main function:", error);
-    process.exit(1);
+  console.error("Error:", error);
+  process.exitCode = 1;
 });
