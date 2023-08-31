@@ -47,5 +47,7 @@ Still in the making.
 
 4/ open bets 200s [0xa0d2f253e0a62831423b86e238e09e3f92df1631726bf7930eae1034b112f36e](https://sepolia.etherscan.io/tx/0xa0d2f253e0a62831423b86e238e09e3f92df1631726bf7930eae1034b112f36e)
 
-5/ Purchase 5000 tokens (I messed up the numbers and there appears to be something wrong with it, if you re deploy change it!) [0x71e082586607abef4e63796726e1ca83f4bd390665e6755523bc014859d66599](https://sepolia.etherscan.io/tx/0x71e082586607abef4e63796726e1ca83f4bd390665e6755523bc014859d66599)
+5/ Purchase 100 tokens [0x42af4c5230cdfb7696996b7f10fc23768ace2936f604bd67cae6885b239a27d8](https://sepolia.etherscan.io/tx/0x42af4c5230cdfb7696996b7f10fc23768ace2936f604bd67cae6885b239a27d8)
+
+
 
