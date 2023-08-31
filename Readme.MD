@@ -45,9 +45,12 @@ Still in the making.
 - Lottery contract [0x8fee3143154bc482305010b3cd9546c7f6f1a667](https://sepolia.etherscan.io/address/0x8fee3143154bc482305010b3cd9546c7f6f1a667)
 - Lottery Token contract [0x64b3BC95286A87C06a6aa8FcDc92dD3b2f695496](https://sepolia.etherscan.io/address/0x64b3BC95286A87C06a6aa8FcDc92dD3b2f695496)
 
-4/ open bets 200s [0xa0d2f253e0a62831423b86e238e09e3f92df1631726bf7930eae1034b112f36e](https://sepolia.etherscan.io/tx/0xa0d2f253e0a62831423b86e238e09e3f92df1631726bf7930eae1034b112f36e)
+4/ Purchase 100 tokens [0x42af4c5230cdfb7696996b7f10fc23768ace2936f604bd67cae6885b239a27d8](https://sepolia.etherscan.io/tx/0x42af4c5230cdfb7696996b7f10fc23768ace2936f604bd67cae6885b239a27d8)
 
-5/ Purchase 100 tokens [0x42af4c5230cdfb7696996b7f10fc23768ace2936f604bd67cae6885b239a27d8](https://sepolia.etherscan.io/tx/0x42af4c5230cdfb7696996b7f10fc23768ace2936f604bd67cae6885b239a27d8)
+5/ Open bets 200 seconds [0x4ad8f6c6039df7b7409b082edebe5a6138fe840943b3dd797914a36ddeda4c6c](https://sepolia.etherscan.io/tx/0x4ad8f6c6039df7b7409b082edebe5a6138fe840943b3dd797914a36ddeda4c6c)
+
+6/ Place bet with 12 tokens: [0x8f218fb4de736bce66662335f895a0428344c540974734e763e2fdb901be4e3e](https://sepolia.etherscan.io/tx/0x8f218fb4de736bce66662335f895a0428344c540974734e763e2fdb901be4e3e) 
+
 
 
 
