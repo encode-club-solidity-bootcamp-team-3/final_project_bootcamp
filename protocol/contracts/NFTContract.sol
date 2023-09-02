@@ -11,8 +11,9 @@ contract NFTContract is ERC721, Ownable {
         _safeMint(to, tokenId);
     }
 
-    function transferNFT(address to, uint256 tokenId) public onlyOwner {
-        require(ownerOf(tokenId) == owner(), "Not the owner of the NFT");
-        _transfer(owner(), to, tokenId);
+    function transferNFT(address from, address to, uint256 tokenId) public onlyOwner {
+        require(ownerOf(tokenId) == from, "Not the owner of the NFT");
+        _transfer(from, to, tokenId);
     }
+ 
 }
