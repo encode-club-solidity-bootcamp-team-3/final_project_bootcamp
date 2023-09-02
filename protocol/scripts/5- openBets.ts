@@ -7,17 +7,14 @@ async function main() {
     const provider = new ethers.JsonRpcProvider(process.env.RPC_ENDPOINT_URL ?? "");
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
 
-    // Replace with the actual contract and token addresses
-    const lotteryContractAddress = '0x8fee3143154bc482305010b3cd9546c7f6f1a667';
-  //  const lotteryTokenContractAddress = '0x64b3BC95286A87C06a6aa8FcDc92dD3b2f695496';
-
-    // Load the contract and contract token ABIs from the JSON files
-    const lotteryContractABI = require('../artifacts/contracts/Lottery.sol/Lottery.json').abi;
-    //const lotteryTokenContractABI = require('../artifacts/contracts/LotteryToken.sol/LotteryToken.json').abi;
-
-    // Create instances of the contracts
-    const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet);
-    //const lotteryTokenContract = new ethers.Contract(lotteryTokenContractAddress, lotteryTokenContractABI, wallet);
+    // Replace with the actual contract address
+    const lotteryContractAddress = '0xc510e80F833Ed283212DE560b97097392F594323'; 
+    
+    // Load the contract ABIs from the JSON files
+    const lotteryContractABI = require('../artifacts/contracts/LotteryNew.sol/LotteryNew.json').abi;
+    
+    // Create instances of the contract
+    const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet); 
 
     // Get the current block timestamp
     const currentBlock = await provider.getBlock("latest");
