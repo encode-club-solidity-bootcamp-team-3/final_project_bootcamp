@@ -72,7 +72,21 @@ contract Lottery is Ownable {
         _;
     }
 
+    
+
     /// @notice Opens the lottery for receiving bets
+
+    function openBets(uint256 closingTime, uint256 tokenId) external onlyOwner whenBetsClosed {
+        require(closingTime > block.timestamp, "Closing time must be in the future");
+        betsClosingTime = closingTime;
+        betsOpen = true;
+
+        // Transfer an NFT to the Lottery contract
+        
+      
+        //nft.transferNFT(address(this), tokenId); // Transfer the NFT to the Lottery contract
+    }
+
     function openBets(uint256 closingTime) external onlyOwner whenBetsClosed {
         require(
             closingTime > block.timestamp,
@@ -116,7 +130,7 @@ contract Lottery is Ownable {
         uint256 winnerIndex = getRandomNumber() % _slots.length;
         address winner = _slots[winnerIndex];
 
-        nftContract.transferFrom(owner(), winner, tokenId); // Transfer the NFT to the winner
+        nftContract.transferFrom(address(this), winner, tokenId); // Transfer the NFT to the winner
 
         delete (_slots);
     }
