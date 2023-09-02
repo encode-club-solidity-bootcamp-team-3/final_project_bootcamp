@@ -11,7 +11,7 @@ async function main() {
     const lotteryContractAddress = '0xc510e80F833Ed283212DE560b97097392F594323'; 
     
     // Load the contract ABIs from the JSON files
-    const lotteryContractABI = require('../artifacts/contracts/LotteryNew.sol/LotteryNew.json').abi;
+    const lotteryContractABI = require('../artifacts/contracts/Lottery.sol/Lottery.json').abi;
     
     // Create instances of the contract
     const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet); 
