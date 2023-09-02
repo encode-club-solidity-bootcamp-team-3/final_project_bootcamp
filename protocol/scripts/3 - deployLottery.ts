@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { Lottery__factory, Lottery } from "../typechain-types"; // Import both Lottery and Lottery__factory
+import { Lottery__factory } from "../typechain-types/"; // Import both Lottery and Lottery__factory
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -30,7 +30,7 @@ async function main() {
         purchaseRatio,
         ethers.parseUnits(betPrice.toFixed(18)),
         ethers.parseUnits(betFee.toFixed(18)),
-        "0xc6c08fc1d46103ef9c9afe1d1a690b475715577d"
+        "0x87687a0d0ac168dc66f5819d3e0d56219b693e32"
       );
     await lotteryContract.waitForDeployment();
     
