@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { NFTContract, NFTContract__factory } from "../typechain-types"; // Import both Lottery and Lottery__factory
+import { NFTContract, NFTContract__factory } from "../typechain-types/";
 import * as dotenv from "dotenv";
 dotenv.config();
 
