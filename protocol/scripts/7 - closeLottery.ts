@@ -8,29 +8,27 @@ async function main() {
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
 
     // Replace with the actual contract and token addresses
-    const lotteryContractAddress = '0x8fee3143154bc482305010b3cd9546c7f6f1a667';
-    const nftContractAddress = '0xc6c08fc1d46103ef9c9afe1d1a690b475715577d';
-  
+    const lotteryContractAddress = '0xc510e80F833Ed283212DE560b97097392F594323';
+    const lotteryTokenContractAddress = '0x8795C5e3C00d2a464D18d60237B8b0eA16b6fD44';
+ 
     // Load the contract and contract token ABIs from the JSON files
     const lotteryContractABI = require('../artifacts/contracts/Lottery.sol/Lottery.json').abi;
-    const nftContractABI = require('../artifacts/contracts/NFTContract.sol/NFTContract.json').abi;
+    const lotteryTokenContractABI = require('../artifacts/contracts/LotteryToken.sol/LotteryToken.json').abi;
   
     // Create instances of the contracts
     const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet);
-    const nftContract = new ethers.Contract(nftContractAddress, nftContractABI, wallet);
+    const lotteryTokenContract = new ethers.Contract(lotteryTokenContractAddress, lotteryTokenContractABI, wallet);
   
-   // const approval = await lotteryTokenContract.approve(process.env.LOTTERY_ADDRESS, ethers.parseEther(String("1")));
-   
-   // Before calling closeLottery
-    const callerAddress = wallet.address;
-
-    const nftOwner = await nftContract.ownerOf(65); // Replace with the correct tokenId
-   
-    console.log(nftOwner);
-    console.log(callerAddress);
-
-   
-   const betTx = await lotteryContract.closeLottery(65);
+    const allowTx = await lotteryTokenContract.approve(
+        lotteryContractAddress,
+        ethers.MaxUint256,
+      );
+      await allowTx.wait();
+  
+    console.log('Allowed', allowTx.hash); 
+    
+    const betTx = await lotteryContract.bet();
+    
     const receipt = await betTx.wait();
     console.log(receipt);
     return { success: true, txHash: betTx.hash };
