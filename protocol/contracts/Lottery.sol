@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.7.0 <0.9.0;
 
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {LotteryToken} from "./LotteryToken.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { LotteryToken } from "./LotteryToken.sol";
 import { NFTContract } from "./NFTContract.sol"; // Import the NFT contract
 
 /// @title A very simple lottery contract
@@ -10,7 +10,7 @@ import { NFTContract } from "./NFTContract.sol"; // Import the NFT contract
 /// @notice You can use this contract for running a very simple lottery
 /// @dev This contract implements a relatively weak randomness source, since there is no cliff period between the randao reveal and the actual usage in this contract
 /// @custom:teaching This is a contract meant for teaching only
-contract Lottery is Ownable { 
+contract LotteryNFT is Ownable {
     /// @notice Address of the token used as payment for the bets
     LotteryToken public paymentToken;
     /// @notice Amount of tokens given per ETH paid
@@ -27,13 +27,12 @@ contract Lottery is Ownable {
     bool public betsOpen;
     /// @notice Timestamp of the lottery next closing date and time
     uint256 public betsClosingTime;
+    /// @notice Address of the NFT contract used for the lottery
+    address public nftAddress;
+    /// @notice Token ID of the NFT to be awarded to the winner
+    uint256 public nftTokenId;
     /// @notice Mapping of prize available for withdraw for each account
     mapping(address => uint256) public prize;
-
-    /// @dev List of bet slots
-    address[] _slots;
-
-    NFTContract public nftContract; // Declare the NFT contract variable
 
     /// @notice Constructor function
     /// @param tokenName Name of the token used for payment
@@ -41,20 +40,17 @@ contract Lottery is Ownable {
     /// @param _purchaseRatio Amount of tokens given per ETH paid
     /// @param _betPrice Amount of tokens required for placing a bet that goes for the prize pool
     /// @param _betFee Amount of tokens required for placing a bet that goes for the owner pool
-
     constructor(
         string memory tokenName,
         string memory tokenSymbol,
         uint256 _purchaseRatio,
         uint256 _betPrice,
-        uint256 _betFee,
-        address _nftContractAddress
+        uint256 _betFee
     ) {
         paymentToken = new LotteryToken(tokenName, tokenSymbol);
         purchaseRatio = _purchaseRatio;
         betPrice = _betPrice;
         betFee = _betFee;
-        nftContract = NFTContract(_nftContractAddress); // Initialize the NFT contract variable
     }
 
     /// @notice Passes when the lottery is at closed state
@@ -72,43 +68,30 @@ contract Lottery is Ownable {
         _;
     }
 
-    
-
     /// @notice Opens the lottery for receiving bets
-
-    function openBets(uint256 closingTime, uint256 tokenId) external onlyOwner whenBetsClosed {
+    /// @param closingTime Timestamp when the lottery will be closed
+    /// @param _nftAddress Address of the NFT contract
+    /// @param tokenId Token ID of the NFT to be awarded
+    function openBets(
+        uint256 closingTime,
+        address _nftAddress,
+        uint256 tokenId
+    ) external onlyOwner whenBetsClosed {
         require(closingTime > block.timestamp, "Closing time must be in the future");
         betsClosingTime = closingTime;
         betsOpen = true;
-
-        // Transfer an NFT to the Lottery contract
-        
-      
-        //nft.transferNFT(address(this), tokenId); // Transfer the NFT to the Lottery contract
+        nftAddress = _nftAddress;
+        nftTokenId = tokenId;
     }
 
-    function openBets(uint256 closingTime) external onlyOwner whenBetsClosed {
-        require(
-            closingTime > block.timestamp,
-            "Closing time must be in the future"
-        );
-        betsClosingTime = closingTime;
-        betsOpen = true;
-    }
-
-    /// @notice Gives tokens based on the amount of ETH sent
-    /// @dev This implementation is prone to rounding problems
-    //function purchaseTokens() external payable {
-    //    paymentToken.mint(msg.sender, msg.value * purchaseRatio);
-    //}
+   
     function purchaseTokens(uint256 value) external payable {
         paymentToken.mint(msg.sender, value * purchaseRatio);
     }
     /// @notice Charges the bet price and creates a new bet slot with the sender's address
     function bet() public whenBetsOpen {
         ownerPool += betFee;
-        prizePool += betPrice;
-        _slots.push(msg.sender);
+        prizePool += betPrice; 
         paymentToken.transferFrom(msg.sender, address(this), betPrice + betFee);
     }
 
@@ -123,19 +106,21 @@ contract Lottery is Ownable {
 
     /// @notice Closes the lottery and calculates the prize, if any
     /// @dev Anyone can call this function at any time after the closing time
-    function closeLottery(uint256 tokenId) external {
-    require(block.timestamp >= betsClosingTime, "Too soon to close");
-    require(betsOpen, "Already closed");
-    if (_slots.length > 0) {
-        uint256 winnerIndex = getRandomNumber() % _slots.length;
-        address winner = _slots[winnerIndex];
+    function closeLottery() external {
+        require(block.timestamp >= betsClosingTime, "Too soon to close");
+        require(betsOpen, "Already closed");
 
-        nftContract.transferFrom(address(this), winner, tokenId); // Transfer the NFT to the winner
+        // Transfer the NFT to the winner
+        require(
+            nftAddress != address(0) && nftTokenId != 0,
+            "NFT address and tokenId must be set"
+        );
+        NFTContract nftContract = NFTContract(nftAddress);
+        nftContract.transferNFT(address(this), msg.sender, nftTokenId);
 
-        delete (_slots);
+        betsOpen = false;
     }
-    betsOpen = false;
-}
+
     /// @notice Returns a random number calculated from the previous block randao
     /// @dev This only works after The Merge
     function getRandomNumber() public view returns (uint256 randomNumber) {
