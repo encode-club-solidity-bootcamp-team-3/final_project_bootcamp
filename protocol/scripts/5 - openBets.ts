@@ -7,15 +7,14 @@ async function main() {
     const provider = new ethers.JsonRpcProvider(process.env.RPC_ENDPOINT_URL ?? "");
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
 
-    // Replace with the actual contract addresses
-    const lotteryContractAddress = '0xc510e80F833Ed283212DE560b97097392F594323';
-    
-    // Load the contract ABIs from the JSON files
-    const lotteryContractABI = require('../artifacts/contracts/Lottery.sol/Lottery.json').abi;
+    // Replace with the actual contract and token addresses
+    const lotteryContractAddress = '0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7'; 
+    // Load the contract and contract token ABIs from the JSON files
+    const lotteryContractABI = require('../artifacts/contracts/Lottery.sol/Lottery.json').abi; 
 
-    // Create instances of the contract
-    const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet);
-    
+    // Create instances of the contracts
+    const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet); 
+
     // Get the current block timestamp
     const currentBlock = await provider.getBlock("latest");
     const timestamp = currentBlock?.timestamp ?? 0;
@@ -27,7 +26,10 @@ async function main() {
     const closingTimestamp = timestamp + durationInSeconds;
 
     // Call the openBets function on the contract
-    const tx = await lotteryContract.openBets(closingTimestamp);
+
+    // Modify with NFT address and tokenID
+    
+    const tx = await lotteryContract.openBets(closingTimestamp, "0x153EAFb91B08B971121eD74CA61Adf3b7d9BA50C", "131");
     const receipt = await tx.wait();
     console.log(`Bets opened (${receipt?.hash})`);
 }
