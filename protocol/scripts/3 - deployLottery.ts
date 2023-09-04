@@ -29,8 +29,7 @@ async function main() {
         tokenSymbol,
         purchaseRatio,
         ethers.parseUnits(betPrice.toFixed(18)),
-        ethers.parseUnits(betFee.toFixed(18)),
-        "0x87687a0d0ac168dc66f5819d3e0d56219b693e32"
+        ethers.parseUnits(betFee.toFixed(18))
       );
     await lotteryContract.waitForDeployment();
     
