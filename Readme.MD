@@ -34,36 +34,44 @@ Pretty much the same as the one used in week 5, but with some modifications:
 Still in the making.
 
 # First deployment
+
+I've devided it in two parts: NFT deployment, minting and transfering, and Lottery deployment and actions. The NFTs must be transferred to the lottery contract for it to transfer it to the lottery winner, but the minting of the NFTs can be done after lottery deployment. 
+
+# Part 1: Deploy NFT
  
-1/ Deploy NFT [0xad32e87b515612054d77f050a20e306c8a2b970ecb5de5657723a215f5085de7](https://sepolia.etherscan.io/tx/0xad32e87b515612054d77f050a20e306c8a2b970ecb5de5657723a215f5085de7)  
-- NFT contract [0x87687a0d0ac168dc66f5819d3e0d56219b693e32](https://sepolia.etherscan.io/address/0x87687a0d0ac168dc66f5819d3e0d56219b693e32)
+1/ Deploy NFT [0x4cffb93029a5a52884ac79f74e4cbd1102bb8c94830ca5a94be84a0c8a64cf88](https://sepolia.etherscan.io/tx/0x4cffb93029a5a52884ac79f74e4cbd1102bb8c94830ca5a94be84a0c8a64cf88)  
+- NFT contract [0x153eafb91b08b971121ed74ca61adf3b7d9ba50c](https://sepolia.etherscan.io/address/0x153eafb91b08b971121ed74ca61adf3b7d9ba50c)
 
-2/ Mint NFT with tokenID 85 [0xcad53c2a3bddca3d43b7a4c5f3e284e4c514b0bc6f2a3878651938284a895b3e](https://sepolia.etherscan.io/tx/0xcad53c2a3bddca3d43b7a4c5f3e284e4c514b0bc6f2a3878651938284a895b3e) 
+2/ Mint NFT with tokenID 105 [0x507fc4bb2057f25f390a3cf2fdb0f31365c76bce10726922a44b5c1561aa0701](https://sepolia.etherscan.io/tx/0x507fc4bb2057f25f390a3cf2fdb0f31365c76bce10726922a44b5c1561aa0701) 
 
-3/ Deploy Lottery [0x8141ed32ad6c4ebed8becfe144020bc98b1e99dc58c98e7e202763b893dca25f](https://sepolia.etherscan.io/tx/0x8141ed32ad6c4ebed8becfe144020bc98b1e99dc58c98e7e202763b893dca25f)
-- Lottery contract [0xc510e80F833Ed283212DE560b97097392F594323](https://sepolia.etherscan.io/address/0xc510e80F833Ed283212DE560b97097392F594323)
-- Lottery Token contract [0x8795C5e3C00d2a464D18d60237B8b0eA16b6fD44](https://sepolia.etherscan.io/address/0x8795C5e3C00d2a464D18d60237B8b0eA16b6fD44)
+Mint NFT with tokenID 131 [0xa3f46dd9957c061fcbf9d0bc05a203ff3ff035425ddceaf3a0c83353477b47fd](https://sepolia.etherscan.io/tx/0xa3f46dd9957c061fcbf9d0bc05a203ff3ff035425ddceaf3a0c83353477b47fd) 
 
-4/ Purchase 30 tokens [0x031ed68ec2946f2664cc6b1520a2b5a13e5ddb947fc4df7708201d71504e7ab4](https://sepolia.etherscan.io/tx/0x031ed68ec2946f2664cc6b1520a2b5a13e5ddb947fc4df7708201d71504e7ab4)
+3/ Transfer NFT tokenID = 105 from NFT contract creator to Lottery address [0xd3afa7a887f642c41c28e91ce849b6a12b34c0e40510193e418c3910221a6c48](https://sepolia.etherscan.io/tx/0xd3afa7a887f642c41c28e91ce849b6a12b34c0e40510193e418c3910221a6c48)
 
-5/ Transfer NFT tokenID = 85 from NFT contract creator to Lottery address [0x86f2894e256faf8a8a273f5a7b216143aac34f578b14fc46303f68f7abc721b8](https://sepolia.etherscan.io/tx/0x86f2894e256faf8a8a273f5a7b216143aac34f578b14fc46303f68f7abc721b8)
+Transfer NFT tokenID = 131 from NFT contract creator to Lottery address [0x24e6fc322230e0f9a0c3ff09b6f787eba1fc17653659839d17ceb615f7a66528](https://sepolia.etherscan.io/tx/0x24e6fc322230e0f9a0c3ff09b6f787eba1fc17653659839d17ceb615f7a66528)
 
-6/ Transfer ownership of NFT from NFT contract creator to Lottery address [0xa363a1212da61fc4017573e3f8ccaba50ba96dcc588533f0ac96093ceb7cba2c](https://sepolia.etherscan.io/tx/0xa363a1212da61fc4017573e3f8ccaba50ba96dcc588533f0ac96093ceb7cba2c)
-
-7/ Open bets 200 seconds [0x12277b6cffb4c69cf97990b61a247a3da75ff5d0fe3afb1815d3e0e3e175d163](https://sepolia.etherscan.io/tx/0x12277b6cffb4c69cf97990b61a247a3da75ff5d0fe3afb1815d3e0e3e175d163)
-
-8/ Place bet with 12 tokens [0xda6e398f002830b333f2b6feef1c6d1d800579dca154ced3903b66fae230cae2](https://sepolia.etherscan.io/tx/0xda6e398f002830b333f2b6feef1c6d1d800579dca154ced3903b66fae230cae2) 
-
-9/ Close lottery, where we see that once it's closed, NFT with tokenID = 85 gets transferred to the winner   [0xb2f9949bf6342e1aa4fb093ca78d08ec250bd8998509dcae07d5c105edefb417](https://sepolia.etherscan.io/tx/0xb2f9949bf6342e1aa4fb093ca78d08ec250bd8998509dcae07d5c105edefb417) 
+# Part 2: Lottery actions
 
 
-Next steps and issues regarding NFT lottery part:
+1/ Deploy Lottery [0x6c0a30ec67a220a39a96145b620cec24770ef3b4d67d5cde12f04adbca806e50](https://sepolia.etherscan.io/tx/0x6c0a30ec67a220a39a96145b620cec24770ef3b4d67d5cde12f04adbca806e50)
+- Lottery contract [0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7](https://sepolia.etherscan.io/address/0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7)
+- Lottery Token contract [0x9f89f7b50e7b3ee9429b1d1c9f7d4d47979e1aba](https://sepolia.etherscan.io/address/0x9f89f7b50e7b3ee9429b1d1c9f7d4d47979e1aba)
 
-As of today, this means that this can only be done once, because the NFT contract creator has to transfer ownership to the lottery in order to execute the transfer. It would be cool to have:
+2/ Purchase 30 tokens [0x507b2f290d19296ba8e0aa0c52f1943d525994187ac9c63d44ce5b2fab13ef01](https://sepolia.etherscan.io/tx/0x507b2f290d19296ba8e0aa0c52f1943d525994187ac9c63d44ce5b2fab13ef01)
 
-- Any NFT creator has to be able to transfer NFTs to lottery contract
-- Once that's done, lottery contract has to be able to transfer NFT to winner
-- We could separate owner pool from lottery contract somehow. Now that the winner earns the NFT as a prize and not the tokens, if we were able to differentiate between them, the "prize" in tokens (amount bet by all users) can go to the NFT original owner (the one who has transferred it to lottery), and the fee could be split between "charity" and "revenue".
+3/ Open bets 200 seconds for tokenID 105 [0x18c21e6ec5f3f09fbd0ed8a8d658849abb43ae2899107e24008c296171c75e62](https://sepolia.etherscan.io/tx/0x18c21e6ec5f3f09fbd0ed8a8d658849abb43ae2899107e24008c296171c75e62)
+
+4/ Place bet with 12 tokens [0xde94ce747c45c09ad36f8acbb27b6aaf2e55bded319969853062c37fa9f72f81](https://sepolia.etherscan.io/tx/0xde94ce747c45c09ad36f8acbb27b6aaf2e55bded319969853062c37fa9f72f81) 
+
+5/ Close lottery, where we see that once it's closed, NFT with tokenID = 105 gets transferred to the winner   [0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6](https://sepolia.etherscan.io/tx/0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6) 
+
+
+6/ Open bets 200 seconds for tokenID 131 [0x5c682bebbc36f8e14aef0646ddbd0e1b742436a58043dcb3847ac1a1d4a1fc83](https://sepolia.etherscan.io/tx/0x5c682bebbc36f8e14aef0646ddbd0e1b742436a58043dcb3847ac1a1d4a1fc83)
+
+7/ Place bet with 12 tokens [0xd1ea99e4798d686d3e691bba91ccc1b0f2fde5bce2dd3bb5ab492ea8d7986c0b](https://sepolia.etherscan.io/tx/0xd1ea99e4798d686d3e691bba91ccc1b0f2fde5bce2dd3bb5ab492ea8d7986c0b) 
+
+8/ Close lottery, where we see that once it's closed, NFT with tokenID = 131 gets transferred to the winner   [0xe21b61db34a46101e1844d48c51f417728b7f49e0aceb86520f49520e57c016d](https://sepolia.etherscan.io/tx/0xe21b61db34a46101e1844d48c51f417728b7f49e0aceb86520f49520e57c016d) 
+
 
 
 
