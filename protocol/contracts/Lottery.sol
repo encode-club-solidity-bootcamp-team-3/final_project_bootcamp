@@ -10,7 +10,7 @@ import { NFTContract } from "./NFTContract.sol"; // Import the NFT contract
 /// @notice You can use this contract for running a very simple lottery
 /// @dev This contract implements a relatively weak randomness source, since there is no cliff period between the randao reveal and the actual usage in this contract
 /// @custom:teaching This is a contract meant for teaching only
-contract LotteryNFT is Ownable {
+contract Lottery is Ownable {
     /// @notice Address of the token used as payment for the bets
     LotteryToken public paymentToken;
     /// @notice Amount of tokens given per ETH paid
@@ -34,6 +34,9 @@ contract LotteryNFT is Ownable {
     /// @notice Mapping of prize available for withdraw for each account
     mapping(address => uint256) public prize;
 
+    /// @dev List of bet slots
+    address[] _slots;
+    
     /// @notice Constructor function
     /// @param tokenName Name of the token used for payment
     /// @param tokenSymbol Symbol of the token used for payment
@@ -92,6 +95,7 @@ contract LotteryNFT is Ownable {
     function bet() public whenBetsOpen {
         ownerPool += betFee;
         prizePool += betPrice; 
+        _slots.push(msg.sender);
         paymentToken.transferFrom(msg.sender, address(this), betPrice + betFee);
     }
 
@@ -115,12 +119,23 @@ contract LotteryNFT is Ownable {
             nftAddress != address(0) && nftTokenId != 0,
             "NFT address and tokenId must be set"
         );
-        NFTContract nftContract = NFTContract(nftAddress);
-        nftContract.transferNFT(address(this), msg.sender, nftTokenId);
 
+        if (_slots.length > 0) {
+            uint256 winnerIndex = getRandomNumber() % _slots.length;
+            address winner = _slots[winnerIndex];
+
+            NFTContract nftContract = NFTContract(nftAddress);
+            nftContract.transferNFT(address(this), msg.sender, nftTokenId);
+
+            prize[winner] += prizePool;
+            prizePool = 0;
+            delete (_slots);
+        }
+       
         betsOpen = false;
     }
 
+ 
     /// @notice Returns a random number calculated from the previous block randao
     /// @dev This only works after The Merge
     function getRandomNumber() public view returns (uint256 randomNumber) {
