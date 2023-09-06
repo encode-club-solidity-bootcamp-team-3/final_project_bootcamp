@@ -39,38 +39,45 @@ I've devided it in two parts: NFT deployment, minting and transfering, and Lotte
 
 # Part 1: Deploy NFT
  
-1/ Deploy NFT [0x4cffb93029a5a52884ac79f74e4cbd1102bb8c94830ca5a94be84a0c8a64cf88](https://sepolia.etherscan.io/tx/0x4cffb93029a5a52884ac79f74e4cbd1102bb8c94830ca5a94be84a0c8a64cf88)  
-- NFT contract [0x153eafb91b08b971121ed74ca61adf3b7d9ba50c](https://sepolia.etherscan.io/address/0x153eafb91b08b971121ed74ca61adf3b7d9ba50c)
+1/ Deploy NFT [0x2502c52a02b2f9554bef6d79e17f640cc2d44d87fb4ce53d1754a84bfaf5ccba](https://sepolia.etherscan.io/tx/0x2502c52a02b2f9554bef6d79e17f640cc2d44d87fb4ce53d1754a84bfaf5ccba)  
+- NFT contract [0x11fe7c5ceb4547bb504335eedf989d1b02247a80](https://sepolia.etherscan.io/address/0x11fe7c5ceb4547bb504335eedf989d1b02247a80)
 
-2/ Mint NFT with tokenID 105 [0x507fc4bb2057f25f390a3cf2fdb0f31365c76bce10726922a44b5c1561aa0701](https://sepolia.etherscan.io/tx/0x507fc4bb2057f25f390a3cf2fdb0f31365c76bce10726922a44b5c1561aa0701) 
+2/ Mint NFT with tokenID 200 [0x0a8c441cb3f6d1a37210588b67c0724c0acc7e488aef3ea99ab56703cdf7be9d](https://sepolia.etherscan.io/tx/0x0a8c441cb3f6d1a37210588b67c0724c0acc7e488aef3ea99ab56703cdf7be9d) 
 
-Mint NFT with tokenID 131 [0xa3f46dd9957c061fcbf9d0bc05a203ff3ff035425ddceaf3a0c83353477b47fd](https://sepolia.etherscan.io/tx/0xa3f46dd9957c061fcbf9d0bc05a203ff3ff035425ddceaf3a0c83353477b47fd) 
+Mint NFT with tokenID 250 [0x7073a455db4e34071269d128727eb75cc49b82f308922c48772b1cfabdd7ee9a](https://sepolia.etherscan.io/tx/0x7073a455db4e34071269d128727eb75cc49b82f308922c48772b1cfabdd7ee9a) 
 
-3/ Transfer NFT tokenID = 105 from NFT contract creator to Lottery address [0xd3afa7a887f642c41c28e91ce849b6a12b34c0e40510193e418c3910221a6c48](https://sepolia.etherscan.io/tx/0xd3afa7a887f642c41c28e91ce849b6a12b34c0e40510193e418c3910221a6c48)
+3/ Transfer NFT tokenID = 200 from NFT contract creator to Lottery address [0xfb7813de04ef59a043a4b20d0c72cf3f59b31b40327b83547cb767e0dcbe00a8](https://sepolia.etherscan.io/tx/0xfb7813de04ef59a043a4b20d0c72cf3f59b31b40327b83547cb767e0dcbe00a8)
 
-Transfer NFT tokenID = 131 from NFT contract creator to Lottery address [0x24e6fc322230e0f9a0c3ff09b6f787eba1fc17653659839d17ceb615f7a66528](https://sepolia.etherscan.io/tx/0x24e6fc322230e0f9a0c3ff09b6f787eba1fc17653659839d17ceb615f7a66528)
+Transfer NFT tokenID = 250 from NFT contract creator to Lottery address [0xd46a1af7cf4c7d564b0a4296e78a32e44be5145c228f905a04de36167ff97605](https://sepolia.etherscan.io/tx/0xd46a1af7cf4c7d564b0a4296e78a32e44be5145c228f905a04de36167ff97605)
+
+4/ Transfer NFT Ownership to Lottery address [0xdec89eb7fdb2c4316b14da2718109b0feb272cf18b111641997a22e8adb62de0](https://sepolia.etherscan.io/tx/0xdec89eb7fdb2c4316b14da2718109b0feb272cf18b111641997a22e8adb62de0)
+
 
 # Part 2: Lottery actions
 
 
-1/ Deploy Lottery [0x6c0a30ec67a220a39a96145b620cec24770ef3b4d67d5cde12f04adbca806e50](https://sepolia.etherscan.io/tx/0x6c0a30ec67a220a39a96145b620cec24770ef3b4d67d5cde12f04adbca806e50)
-- Lottery contract [0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7](https://sepolia.etherscan.io/address/0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7)
-- Lottery Token contract [0x9f89f7b50e7b3ee9429b1d1c9f7d4d47979e1aba](https://sepolia.etherscan.io/address/0x9f89f7b50e7b3ee9429b1d1c9f7d4d47979e1aba)
+1/ Deploy Lottery [0xfcca2d514d8713b93fc06f1f341aa604db77e0d0f7dea200366db12301051158](https://sepolia.etherscan.io/tx/0xfcca2d514d8713b93fc06f1f341aa604db77e0d0f7dea200366db12301051158)
+- Lottery contract [0xF1f0F0872d8b9643F9AF731792B30c9884BAAeB0](https://sepolia.etherscan.io/address/0xF1f0F0872d8b9643F9AF731792B30c9884BAAeB0)
+- Lottery Token contract [0x0715E7485c0D336824f2A77915f543bdC1dCF1fE](https://sepolia.etherscan.io/address/0x0715E7485c0D336824f2A77915f543bdC1dCF1fE)
 
-2/ Purchase 30 tokens [0x507b2f290d19296ba8e0aa0c52f1943d525994187ac9c63d44ce5b2fab13ef01](https://sepolia.etherscan.io/tx/0x507b2f290d19296ba8e0aa0c52f1943d525994187ac9c63d44ce5b2fab13ef01)
+2/ Purchase 20 tokens [0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf](https://sepolia.etherscan.io/tx/0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf)
 
-3/ Open bets 200 seconds for tokenID 105 [0x18c21e6ec5f3f09fbd0ed8a8d658849abb43ae2899107e24008c296171c75e62](https://sepolia.etherscan.io/tx/0x18c21e6ec5f3f09fbd0ed8a8d658849abb43ae2899107e24008c296171c75e62)
+3/ Open bets 200 seconds for tokenID 200 [0x63dd3c140053595c9ef265b59cf5dc00dda53125c2b3db3e107a413653f1abc4](https://sepolia.etherscan.io/tx/0x63dd3c140053595c9ef265b59cf5dc00dda53125c2b3db3e107a413653f1abc4)
 
-4/ Place bet with 12 tokens [0xde94ce747c45c09ad36f8acbb27b6aaf2e55bded319969853062c37fa9f72f81](https://sepolia.etherscan.io/tx/0xde94ce747c45c09ad36f8acbb27b6aaf2e55bded319969853062c37fa9f72f81) 
+4/ Close lottery to check that indeed if no one bets, no one gets the NFT 
+[0x76eedca2dc00a8c1a904b09fbc6907c2414e0217088472d5756981b9865021e0](https://sepolia.etherscan.io/tx/0x76eedca2dc00a8c1a904b09fbc6907c2414e0217088472d5756981b9865021e0)
 
-5/ Close lottery, where we see that once it's closed, NFT with tokenID = 105 gets transferred to the winner   [0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6](https://sepolia.etherscan.io/tx/0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6) 
+5/ Open bets 200 seconds for tokenID 200 again [0x8bcf06100ece65eafc4b3e3a14748cacf54a62d9b6a95940faa67543fc5ba1e8](https://sepolia.etherscan.io/tx/0x8bcf06100ece65eafc4b3e3a14748cacf54a62d9b6a95940faa67543fc5ba1e8)
 
+6/ Place bet with 12 tokens [0x672ebc5a72cc041ff9227eff73fb325f6e70a22b2872e250a73ffee5dfeae2e3](https://sepolia.etherscan.io/tx/0x672ebc5a72cc041ff9227eff73fb325f6e70a22b2872e250a73ffee5dfeae2e3) 
+
+7/ Close lottery, where we see that once it's closed, NFT with tokenID = 105 gets transferred to the winner   [0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6](https://sepolia.etherscan.io/tx/0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6) 
 
 6/ Open bets 200 seconds for tokenID 131 [0x5c682bebbc36f8e14aef0646ddbd0e1b742436a58043dcb3847ac1a1d4a1fc83](https://sepolia.etherscan.io/tx/0x5c682bebbc36f8e14aef0646ddbd0e1b742436a58043dcb3847ac1a1d4a1fc83)
 
 7/ Place bet with 12 tokens [0xd1ea99e4798d686d3e691bba91ccc1b0f2fde5bce2dd3bb5ab492ea8d7986c0b](https://sepolia.etherscan.io/tx/0xd1ea99e4798d686d3e691bba91ccc1b0f2fde5bce2dd3bb5ab492ea8d7986c0b) 
 
-8/ Close lottery, where we see that once it's closed, NFT with tokenID = 131 gets transferred to the winner   [0xe21b61db34a46101e1844d48c51f417728b7f49e0aceb86520f49520e57c016d](https://sepolia.etherscan.io/tx/0xe21b61db34a46101e1844d48c51f417728b7f49e0aceb86520f49520e57c016d) 
+8/ Close lottery, where we see that once it's closed, NFT with tokenID = 200 gets transferred to the winner   [0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372](https://sepolia.etherscan.io/tx/0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372) 
 
 
 
