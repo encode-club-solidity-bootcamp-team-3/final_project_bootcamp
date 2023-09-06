@@ -1,11 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ethers } from 'ethers';
-//import * as lotteryJson from './assets/Lottery.json';
-import * as lotteryTokenJson from './assets/LotteryToken.json';
-import * as lotteryJson from './assets/LotteryNew.json';
-
-//const LOTTERY_ADDRESS = '0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7';
-//const LOTTERY_TOKEN_ADDRESS = '0x9f89f7b50e7b3ee9429b1d1c9f7d4d47979e1aba';
+import * as lotteryJson from './assets/Lottery.json';
+import * as lotteryTokenJson from './assets/LotteryToken.json'; 
 
 const LOTTERY_ADDRESS = '0xF1f0F0872d8b9643F9AF731792B30c9884BAAeB0';
 const LOTTERY_TOKEN_ADDRESS = '0x0715E7485c0D336824f2A77915f543bdC1dCF1fE';
