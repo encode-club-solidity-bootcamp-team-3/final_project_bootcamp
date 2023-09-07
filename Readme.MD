@@ -71,14 +71,7 @@ Transfer NFT tokenID = 250 from NFT contract creator to Lottery address [0xd46a1
 
 6/ Place bet with 12 tokens [0x672ebc5a72cc041ff9227eff73fb325f6e70a22b2872e250a73ffee5dfeae2e3](https://sepolia.etherscan.io/tx/0x672ebc5a72cc041ff9227eff73fb325f6e70a22b2872e250a73ffee5dfeae2e3) 
 
-7/ Close lottery, where we see that once it's closed, NFT with tokenID = 105 gets transferred to the winner   [0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6](https://sepolia.etherscan.io/tx/0x3d17f73da90100a64526fe062652f08c73d43f39c94557ecffd676faa4c407f6) 
-
-6/ Open bets 200 seconds for tokenID 131 [0x5c682bebbc36f8e14aef0646ddbd0e1b742436a58043dcb3847ac1a1d4a1fc83](https://sepolia.etherscan.io/tx/0x5c682bebbc36f8e14aef0646ddbd0e1b742436a58043dcb3847ac1a1d4a1fc83)
-
-7/ Place bet with 12 tokens [0xd1ea99e4798d686d3e691bba91ccc1b0f2fde5bce2dd3bb5ab492ea8d7986c0b](https://sepolia.etherscan.io/tx/0xd1ea99e4798d686d3e691bba91ccc1b0f2fde5bce2dd3bb5ab492ea8d7986c0b) 
-
-8/ Close lottery, where we see that once it's closed, NFT with tokenID = 200 gets transferred to the winner   [0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372](https://sepolia.etherscan.io/tx/0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372) 
-
+7/ Close lottery, where we see that once it's closed, NFT with tokenID = 200 gets transferred to the winner   [0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372](https://sepolia.etherscan.io/tx/0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372) 
 
 
 
