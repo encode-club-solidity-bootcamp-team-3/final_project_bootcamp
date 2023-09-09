@@ -51,7 +51,11 @@ export class AppController {
   async displayOwnerPool() {
     return await this.appService.ownerPool();
   }
-
+  
+  @Get('claim-prize')
+  async claimPrize() {
+    return await this.appService.prizeWithdraw();
+  }
   @Get('owner-withdraw')
   async ownerWithdraw(@Query('amount') amount: string) {
     return await this.appService.ownerWithdraw(amount);
