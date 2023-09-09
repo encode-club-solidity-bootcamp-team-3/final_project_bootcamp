@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ethers } from 'ethers';
 import * as lotteryJson from './assets/Lottery.json';
-import * as lotteryTokenJson from './assets/LotteryToken.json'; 
+import * as lotteryTokenJson from './assets/LotteryToken.json';
 
-const LOTTERY_ADDRESS = '0xF1f0F0872d8b9643F9AF731792B30c9884BAAeB0';
-const LOTTERY_TOKEN_ADDRESS = '0x0715E7485c0D336824f2A77915f543bdC1dCF1fE';
+const LOTTERY_ADDRESS = '0xA2F5753e4c9077D77621364B3dD09F144A06a6C6';
+const LOTTERY_TOKEN_ADDRESS = '0x33f34416c51789e35Cd226028253b7e4C8A9efa3';
 
 @Injectable()
 export class AppService {
@@ -83,6 +83,12 @@ export class AppService {
   
     console.log("Transaction receipt:", purchaseReceipt);
 
+  }
+
+  async prizeWithdraw() {
+    const tx = await this.contract.prizeWithdraw();
+    const receipt = await tx.wait();
+    console.log(`Prize claimed (${receipt?.hash})\n`);
   }
 
   //async bet(amount: string) {
