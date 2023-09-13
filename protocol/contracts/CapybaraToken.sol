@@ -17,6 +17,10 @@ contract CapybaraToken is ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, tokenURI);
     }
 
-    
- 
+
+  function transferNFT(address from, address to, uint256 tokenId) public onlyOwner {
+        require(ownerOf(tokenId) == from, "Not the owner of the NFT");
+        _transfer(from, to, tokenId);
+    }
+
 }
