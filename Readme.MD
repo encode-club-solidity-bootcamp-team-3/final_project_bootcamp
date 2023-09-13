@@ -61,7 +61,7 @@ Transfer NFT tokenID = 1 from NFT contract creator to Lottery address [0x9524e47
 - Lottery contract [0x80e91b9742b2874c0ab3b8d766cbe318b71335eb](https://sepolia.etherscan.io/address/0x80e91b9742b2874c0ab3b8d766cbe318b71335eb)
 - Lottery Token contract [0x434be57C2168C0AC839091EB79d25A7Cdbd7088D](https://sepolia.etherscan.io/address/0x434be57C2168C0AC839091EB79d25A7Cdbd7088D)
 
-2/ Purchase 20 tokens [0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf](https://sepolia.etherscan.io/tx/0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf)
+2/ Purchase 30 tokens [0xfd9286124ea49f16cfe2014d347ed7620a237a3314d916291038eb5abbcb6e50](https://sepolia.etherscan.io/tx/0xfd9286124ea49f16cfe2014d347ed7620a237a3314d916291038eb5abbcb6e50)
 
 3/ Open bets 200 seconds for tokenID 0 [0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c](https://sepolia.etherscan.io/tx/0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c)
 
