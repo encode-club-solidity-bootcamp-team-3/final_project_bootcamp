@@ -68,4 +68,10 @@ export class AppController {
   async tokensMinted(@Param('contractAddress') contractAddress: string) {
     return this.appService.tokensMinted(contractAddress);
   }
+  @Get('lottery-token-contract-info/:lotteryContractAddress')
+  async lotteryTokenContractInfo(
+    @Param('lotteryContractAddress') lotteryContractAddress: string,
+  ) {
+    return this.appService.lotteryTokenContractInfo(lotteryContractAddress);
+  }
 }

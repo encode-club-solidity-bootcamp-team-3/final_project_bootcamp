@@ -162,4 +162,40 @@ export class AppService {
       }),
     );
   }
+
+  async lotteryTokenContractInfo(lotteryContractAddress: string) {
+    const lotteryContract = new ethers.Contract(
+      lotteryContractAddress,
+      lotteryJson.abi,
+      this.provider,
+    );
+    const purchaseRatio = await lotteryContract.purchaseRatio();
+
+    const paymentTokenAddress = await lotteryContract.paymentToken();
+
+    const lotteryTokenContract = new ethers.Contract(
+      paymentTokenAddress,
+      lotteryTokenJson.abi,
+      this.provider,
+    );
+
+    const paymentTokenName = await lotteryTokenContract.name();
+    const paymentTokenSymbol = await lotteryTokenContract.symbol();
+    const paymentTokenTotalSupply = await lotteryTokenContract.totalSupply();
+
+    // console.log('🔥', {
+    //   paymentTokenAddress,
+    //   purchaseRatio,
+    //   paymentTokenName,
+    //   paymentTokenSymbol,
+    //   paymentTokenTotalSupply: Number(paymentTokenTotalSupply),
+    // });
+    return {
+      address: paymentTokenAddress,
+      ratio: Number(purchaseRatio),
+      name: paymentTokenName,
+      symbol: paymentTokenSymbol,
+      totalSupply: Number(paymentTokenTotalSupply),
+    };
+  }
 }
