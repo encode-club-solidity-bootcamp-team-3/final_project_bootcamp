@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { Lottery__factory } from "../typechain-types/"; // Import both Lottery and Lottery__factory
+import { LotteryNEW__factory } from "../typechain-types/"; // Import both Lottery and Lottery__factory
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -18,7 +18,7 @@ async function main() {
         throw new Error("Not enough ether.");
     }
     
-    const lotteryFactory = new Lottery__factory(wallet);
+    const lotteryFactory = new LotteryNEW__factory(wallet);
     const tokenName = "Group 3 test 1";
     const tokenSymbol = "GTONE";
     const purchaseRatio = 1000; // Example value, adjust as needed
