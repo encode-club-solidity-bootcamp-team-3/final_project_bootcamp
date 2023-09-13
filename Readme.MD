@@ -2,21 +2,26 @@
 
 ## Building a NFT auction + NFT lottery with charity contributions
 
-This repository focuses on the development of a decentralized auction dApp that combines NFT art auctions, a lottery system, and part of the revenue goes to charity.
+This repository focuses on the development of a decentralized auction dApp that combines NFT art auctions, a lottery system, and part of the revenue would go to charity.
 
-On one hand, create a bunch of NFTs. Then, users can bid for them as an auction system, which shows a list of auctions, time left for the auction, last winners. 
+On one hand, create a bunch of NFTs. In this case, we focused on Capybaras. Then, users can bid for them as an auction system, which would show a list of auctions, time left for the auction, last winners. 
 
-Finally, add a sort of lottery system that gives users a chance to win a selected NFT artwork with a lottery ticket purchase.
+Finally, add a lottery system that gives users a chance to win a selected NFT artwork with a lottery ticket purchase.
 
-Charitable Contributions: Allocate a percentage of the funds raised from NFT art auctions and lottery ticket sales to charitable causes or organizations.
+For the scope of this project, we were only able to focus on the frontend of the lottery, and the backend of both of them. In this readme file, you will find the expalanation of the whole process.
 
-Users can choose which charity or cause they want to support with their contributions.
+Charitable Contributions: In a fully implemented version, we would allocate a percentage of the funds raised from NFT art auctions and lottery ticket sales to charitable causes or organizations. Users would ideally choose which charity or cause they want to support with their contributions. This is not implemented in the project though.
 
 ### Smart Contracts
 
-1 - NFTContract.sol
+1 - CapybaraToken.sol
 
-A ER721 token generated via OpenZeppelin wizard, with functions safeMint (in order to mint creating a tokenID), and function transerNFT.
+A ER721 token generated using OpenZeppelin ERC721URIStorage so we could embed image metadata from IPFS.
+
+The CIDs in IPFS would be:
+
+- QmZFx9hLtBDkcRknzfhwLieHiQ6mmFmm8h9rE8yJLH4cdn for Cowboy Capybara.
+- QmQ9XqniUyjh8pfCz4C47J1qobD98zvhK9yEs8tekD8jMg for Mexican Capybara.
 
 2 - LotteryToken.sol
 
@@ -26,39 +31,35 @@ Same as the one used in week 5.
 
 Pretty much the same as the one used in week 5, but with some modifications:
 
-- We import the NFTContract 
-- When closing the lottery and a winner is selected, transfer NFT.
+- We import the CapybaraToken contract 
+- When closing the lottery and a winner is selected, when he/she wants to withdraw prize, it transfers NFT.
 
-4 - AuctionContract.sol
+4 - Auction.sol
 
-Still in the making.
+Representing the Auction logic.
 
-# First deployment
+# Transactions and explanation
 
-I've devided it in two parts: NFT deployment, minting and transfering, and Lottery deployment and actions. The NFTs must be transferred to the lottery contract for it to transfer it to the lottery winner, but the minting of the NFTs can be done after lottery deployment. 
+We've devided it in two parts: NFT deployment, minting and transfering, and Lottery deployment and actions. The NFTs must be transferred to the lottery contract for it to transfer it to the lottery winner, but the minting of the NFTs can be done after lottery deployment. 
 
 # Part 1: Deploy NFT
  
-1/ Deploy NFT [0x2502c52a02b2f9554bef6d79e17f640cc2d44d87fb4ce53d1754a84bfaf5ccba](https://sepolia.etherscan.io/tx/0x2502c52a02b2f9554bef6d79e17f640cc2d44d87fb4ce53d1754a84bfaf5ccba)  
-- NFT contract [0x11fe7c5ceb4547bb504335eedf989d1b02247a80](https://sepolia.etherscan.io/address/0x11fe7c5ceb4547bb504335eedf989d1b02247a80)
+1/ Deploy NFT [0x1aa1ecf1b6cc5c1e354d3d0931393ba517cc7410cbd35405587e4e64de4badc7](https://sepolia.etherscan.io/tx/0x1aa1ecf1b6cc5c1e354d3d0931393ba517cc7410cbd35405587e4e64de4badc7)  
+- NFT contract [0x973cf347cc98b9e264843522e8cdf61d776465ee](https://sepolia.etherscan.io/address/0x973cf347cc98b9e264843522e8cdf61d776465ee)
 
-2/ Mint NFT with tokenID 200 [0x0a8c441cb3f6d1a37210588b67c0724c0acc7e488aef3ea99ab56703cdf7be9d](https://sepolia.etherscan.io/tx/0x0a8c441cb3f6d1a37210588b67c0724c0acc7e488aef3ea99ab56703cdf7be9d) 
+2/ Mint NFT with tokenID 0 [0xe41acf2de5936303f5c5d0dc1bb105fcaf69f4a9497219f5f260f6e825243e8c](https://sepolia.etherscan.io/tx/0xe41acf2de5936303f5c5d0dc1bb105fcaf69f4a9497219f5f260f6e825243e8c) 
 
-Mint NFT with tokenID 250 [0x7073a455db4e34071269d128727eb75cc49b82f308922c48772b1cfabdd7ee9a](https://sepolia.etherscan.io/tx/0x7073a455db4e34071269d128727eb75cc49b82f308922c48772b1cfabdd7ee9a) 
+Mint NFT with tokenID 1 [0x0b8c7b8191b793a4c5b61f6f2218cb86365b3c8c48ceb4ddf0aa9f49b54405f0](https://sepolia.etherscan.io/tx/0x0b8c7b8191b793a4c5b61f6f2218cb86365b3c8c48ceb4ddf0aa9f49b54405f0) 
 
-3/ Transfer NFT tokenID = 200 from NFT contract creator to Lottery address [0xfb7813de04ef59a043a4b20d0c72cf3f59b31b40327b83547cb767e0dcbe00a8](https://sepolia.etherscan.io/tx/0xfb7813de04ef59a043a4b20d0c72cf3f59b31b40327b83547cb767e0dcbe00a8)
+3/ Transfer NFT tokenID = 0 from NFT contract creator to Lottery address [0xc4fe6a5f4c726eafef38eb58dfffac5b80fd3262bc210caaf2ecbbda5dc5e40f](https://sepolia.etherscan.io/tx/0xc4fe6a5f4c726eafef38eb58dfffac5b80fd3262bc210caaf2ecbbda5dc5e40f)
 
-Transfer NFT tokenID = 250 from NFT contract creator to Lottery address [0xd46a1af7cf4c7d564b0a4296e78a32e44be5145c228f905a04de36167ff97605](https://sepolia.etherscan.io/tx/0xd46a1af7cf4c7d564b0a4296e78a32e44be5145c228f905a04de36167ff97605)
-
-4/ Transfer NFT Ownership to Lottery address [0xdec89eb7fdb2c4316b14da2718109b0feb272cf18b111641997a22e8adb62de0](https://sepolia.etherscan.io/tx/0xdec89eb7fdb2c4316b14da2718109b0feb272cf18b111641997a22e8adb62de0)
-
+Transfer NFT tokenID = 1 from NFT contract creator to Lottery address [0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8](https://sepolia.etherscan.io/tx/0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8)
 
 # Part 2: Lottery actions
 
-
-1/ Deploy Lottery [0xfcca2d514d8713b93fc06f1f341aa604db77e0d0f7dea200366db12301051158](https://sepolia.etherscan.io/tx/0xfcca2d514d8713b93fc06f1f341aa604db77e0d0f7dea200366db12301051158)
-- Lottery contract [0xF1f0F0872d8b9643F9AF731792B30c9884BAAeB0](https://sepolia.etherscan.io/address/0xF1f0F0872d8b9643F9AF731792B30c9884BAAeB0)
-- Lottery Token contract [0x0715E7485c0D336824f2A77915f543bdC1dCF1fE](https://sepolia.etherscan.io/address/0x0715E7485c0D336824f2A77915f543bdC1dCF1fE)
+1/ Deploy Lottery [0xb0cca3163776dbc1566ff6c3a21bfe84fd555d38efcb3103aad31b18057a5cca](https://sepolia.etherscan.io/tx/0xb0cca3163776dbc1566ff6c3a21bfe84fd555d38efcb3103aad31b18057a5cca)
+- Lottery contract [0x80e91b9742b2874c0ab3b8d766cbe318b71335eb](https://sepolia.etherscan.io/address/0x80e91b9742b2874c0ab3b8d766cbe318b71335eb)
+- Lottery Token contract [0x434be57C2168C0AC839091EB79d25A7Cdbd7088D](https://sepolia.etherscan.io/address/0x434be57C2168C0AC839091EB79d25A7Cdbd7088D)
 
 2/ Purchase 20 tokens [0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf](https://sepolia.etherscan.io/tx/0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf)
 
