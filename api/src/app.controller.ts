@@ -16,7 +16,11 @@ export class AppController {
   @Post('open-bets')
   async openBets(@Body() body: openBetsDTO) {
     console.log({ body });
-    return await this.appService.openBets(body.duration, body.nftAddress, body.tokenID);
+    return await this.appService.openBets(
+      body.duration,
+      body.nftAddress,
+      body.tokenID,
+    );
   }
 
   @Post('buy-tokens')
@@ -51,7 +55,7 @@ export class AppController {
   async displayOwnerPool() {
     return await this.appService.ownerPool();
   }
-  
+
   @Get('claim-prize')
   async claimPrize() {
     return await this.appService.prizeWithdraw();
@@ -60,5 +64,8 @@ export class AppController {
   async ownerWithdraw(@Query('amount') amount: string) {
     return await this.appService.ownerWithdraw(amount);
   }
-
+  @Get('tokens-minted/:contractAddress')
+  async tokensMinted(@Param('contractAddress') contractAddress: string) {
+    return this.appService.tokensMinted(contractAddress);
+  }
 }

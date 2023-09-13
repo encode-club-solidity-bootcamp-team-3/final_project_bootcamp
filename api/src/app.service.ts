@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ethers } from 'ethers';
 import * as lotteryJson from './assets/Lottery.json';
 import * as lotteryTokenJson from './assets/LotteryToken.json';
+import * as nftContractJson from './assets/NFTContract.json';
 
 const LOTTERY_ADDRESS = '0xA2F5753e4c9077D77621364B3dD09F144A06a6C6';
 const LOTTERY_TOKEN_ADDRESS = '0x33f34416c51789e35Cd226028253b7e4C8A9efa3';
@@ -41,7 +42,11 @@ export class AppService {
   async openBets(duration: string, nftAddress: string, tokenID: string) {
     const currentBlock = await this.provider.getBlock('latest');
     const timestamp = currentBlock?.timestamp ?? 0;
-    const tx = await this.contract.openBets(timestamp + Number(duration), nftAddress, tokenID );
+    const tx = await this.contract.openBets(
+      timestamp + Number(duration),
+      nftAddress,
+      tokenID,
+    );
     const receipt = await tx.wait();
     console.log(`Bets opened (${receipt?.hash})`);
   }
@@ -71,18 +76,17 @@ export class AppService {
     );
   }
 
-
   async buyTokens(amount: string) {
-
     // Convert the Ether amount to wei
     const weiAmount = ethers.parseEther(amount.toString());
-  
-    // Call the purchaseTokens function and send Ether
-    const purchaseTx = await this.contract.purchaseTokens(weiAmount, { value: weiAmount });
-    const purchaseReceipt = await purchaseTx.wait();
-  
-    console.log("Transaction receipt:", purchaseReceipt);
 
+    // Call the purchaseTokens function and send Ether
+    const purchaseTx = await this.contract.purchaseTokens(weiAmount, {
+      value: weiAmount,
+    });
+    const purchaseReceipt = await purchaseTx.wait();
+
+    console.log('Transaction receipt:', purchaseReceipt);
   }
 
   async prizeWithdraw() {
@@ -99,14 +103,13 @@ export class AppService {
       ethers.MaxUint256,
     );
     await allowTx.wait();
-    
-  
+
     const balanceBN = await this.contract_token.balanceOf(this.wallet.address);
 
     // Convert the amount to the same unit as balanceBN
     //const amountInWei = ethers.parseEther(amount);
 
-    console.log("Balance:", balanceBN.toString()); // Convert balanceBN to a string
+    console.log('Balance:', balanceBN.toString()); // Convert balanceBN to a string
     //console.log("Bet:", amountInWei.toString()); // Convert amountInWei to a string
 
     console.log('Allowed', allowTx.hash);
@@ -136,5 +139,27 @@ export class AppService {
     console.log(`Owner Withdrawned (${receipt?.hash})\n`);
   }
 
+  async tokensMinted(contractAddress: string) {
+    const nftContract = new ethers.Contract(
+      contractAddress,
+      nftContractJson.abi,
+      this.provider,
+    );
+    const filter = nftContract.filters.Transfer;
+    const events = await nftContract.queryFilter(filter, 0);
+    const ADDRESS_0 = '0x0000000000000000000000000000000000000000';
 
+    const tokenIds = events
+      // topics = [?, from, to, tokenId]
+      .filter((event) => `0x${event.topics[1].slice(-40)}` === ADDRESS_0)
+      .map((event) => Number(event.topics[3]));
+
+    return await Promise.all(
+      tokenIds.map(async (tokenId) => {
+        const tokenUri = await nftContract.tokenURI(tokenId);
+        const ipfsUrl = `https://ipfs.io/ipfs/${tokenUri.split('//')[1]}`;
+        return { tokenId, ipfsUrl };
+      }),
+    );
+  }
 }
