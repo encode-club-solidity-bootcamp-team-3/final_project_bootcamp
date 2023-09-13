@@ -3,14 +3,13 @@ pragma solidity >=0.7.0 <0.9.0;
 
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { LotteryToken } from "./LotteryToken.sol";
-import { NFTContract } from "./NFTContract.sol"; // Import the NFT contract
+import { CapybaraToken } from "./CapybaraToken.sol"; // Import the NFT contract
 
-/// @title A very simple lottery contract
-/// @author Matheus Pagani
+/// @title A very simple lottery contract 
 /// @notice You can use this contract for running a very simple lottery
 /// @dev This contract implements a relatively weak randomness source, since there is no cliff period between the randao reveal and the actual usage in this contract
 /// @custom:teaching This is a contract meant for teaching only
-contract Lottery is Ownable {
+contract LotteryNEW is Ownable {
     /// @notice Address of the token used as payment for the bets
     LotteryToken public paymentToken;
     /// @notice Amount of tokens given per ETH paid
@@ -33,10 +32,7 @@ contract Lottery is Ownable {
     uint256 public nftTokenId;
     /// @notice Mapping of prize available for withdraw for each account
     mapping(address => uint256) public prize;
-
-    /// @dev List of bet slots
     address[] _slots;
-    
     /// @notice Constructor function
     /// @param tokenName Name of the token used for payment
     /// @param tokenSymbol Symbol of the token used for payment
@@ -113,29 +109,16 @@ contract Lottery is Ownable {
     function closeLottery() external {
         require(block.timestamp >= betsClosingTime, "Too soon to close");
         require(betsOpen, "Already closed");
-
-        // Transfer the NFT to the winner
-        require(
-            nftAddress != address(0) && nftTokenId != 0,
-            "NFT address and tokenId must be set"
-        );
-
         if (_slots.length > 0) {
             uint256 winnerIndex = getRandomNumber() % _slots.length;
             address winner = _slots[winnerIndex];
-
-            NFTContract nftContract = NFTContract(nftAddress);
-            nftContract.transferNFT(address(this), msg.sender, nftTokenId);
-
             prize[winner] += prizePool;
             prizePool = 0;
             delete (_slots);
         }
-       
         betsOpen = false;
     }
 
- 
     /// @notice Returns a random number calculated from the previous block randao
     /// @dev This only works after The Merge
     function getRandomNumber() public view returns (uint256 randomNumber) {
@@ -143,10 +126,15 @@ contract Lottery is Ownable {
     }
 
     /// @notice Withdraws `amount` from that accounts's prize pool
-    function prizeWithdraw(uint256 amount) external {
-        require(amount <= prize[msg.sender], "Not enough prize");
-        prize[msg.sender] -= amount;
-        paymentToken.transfer(msg.sender, amount);
+    function prizeWithdraw() external {
+        require(
+            nftAddress != address(0) && nftTokenId != 0,
+            "NFT address and tokenId must be set"
+        );
+        CapybaraToken nftContract = CapybaraToken(nftAddress);
+        nftContract.transferNFT(address(this), msg.sender, nftTokenId);
+
+        betsOpen = false;
     }
 
     function getPrize(address account) external view returns (uint256) {
