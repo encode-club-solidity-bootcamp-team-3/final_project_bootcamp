@@ -6,7 +6,7 @@ export default async function LotteryContractInfo() {
   );
 
   return (
-    <div>
+    <div className="rounded-lg border border-gray-200 shadow-md p-4 flex flex-col gap-4 bg-white">
       <h2 className="text-lg font-bold">
         Lottery Contract: {lotteryContractAddress}{" "}
         <a

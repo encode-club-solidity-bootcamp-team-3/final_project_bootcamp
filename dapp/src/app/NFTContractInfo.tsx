@@ -9,7 +9,7 @@ export default async function NFTContractInfo() {
   const tokens = await response.json();
 
   return (
-    <div>
+    <div className="rounded-lg border border-gray-200 shadow-md p-4 flex flex-col gap-4 bg-white">
       <h2 className="text-lg font-bold">
         NFT Contract: {nftContractAddress}{" "}
         <a
@@ -26,8 +26,8 @@ export default async function NFTContractInfo() {
             <Image
               src={token.ipfsUrl}
               alt={`${token.tokenId} image`}
-              height={320}
-              width={320}
+              height={160}
+              width={160}
             />
             <p>
               token #{token.tokenId}{" "}

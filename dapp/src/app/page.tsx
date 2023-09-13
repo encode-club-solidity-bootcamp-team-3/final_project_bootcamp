@@ -4,10 +4,12 @@ import NFTContractInfo from './NFTContractInfo';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 gap-4">
-      <NFTContractInfo />
-      <LotteryTokenContractInfo />
-      <LotteryContractInfo />
-    </main>
+    (
+      <main className="flex min-h-screen flex-col p-4 gap-4 bg-slate-200">
+        <NFTContractInfo />
+        <LotteryTokenContractInfo />
+        <LotteryContractInfo />
+      </main>
+    )
   );
 }

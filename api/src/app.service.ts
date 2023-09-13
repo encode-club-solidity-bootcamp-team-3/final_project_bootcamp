@@ -6,6 +6,7 @@ import * as nftContractJson from './assets/NFTContract.json';
 
 const LOTTERY_ADDRESS = '0xA2F5753e4c9077D77621364B3dD09F144A06a6C6';
 const LOTTERY_TOKEN_ADDRESS = '0x33f34416c51789e35Cd226028253b7e4C8A9efa3';
+const DECIMALS = 1_000_000_000_000_000_000;
 
 @Injectable()
 export class AppService {
@@ -194,8 +195,8 @@ export class AppService {
       address: paymentTokenAddress,
       ratio: Number(purchaseRatio),
       name: paymentTokenName,
-      symbol: paymentTokenSymbol,
-      totalSupply: Number(paymentTokenTotalSupply),
+      symbol: `$${paymentTokenSymbol}`,
+      totalSupply: Number(paymentTokenTotalSupply) / DECIMALS,
     };
   }
 }
