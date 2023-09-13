@@ -5,6 +5,7 @@
     "start": "node dist/main",
     "start:dev": "nest start --watch"
   },
+  "license": "UNLICENSED",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
