@@ -1,5 +1,8 @@
 import { lotteryContractAddress } from '@/constants/contracts';
 import { LotteryTokenContractInfo as ILotteryTokenContractInfo } from '@/types/LotteryTokenContractInfo';
+import Card from './Card';
+import { Purchase } from './Purchase';
+import { BalanceOf } from './BalanceOf';
 
 export default async function LotteryTokenContractInfo() {
   const response = await fetch(
@@ -8,7 +11,7 @@ export default async function LotteryTokenContractInfo() {
   const info: ILotteryTokenContractInfo = await response.json();
 
   return (
-    <div className="rounded-lg border border-gray-200 shadow-md p-4 flex flex-col gap-4 bg-white">
+    <Card>
       <h2 className="text-lg font-bold">
         Lottery Token Contract: {info.address}{" "}
         <a
@@ -19,13 +22,23 @@ export default async function LotteryTokenContractInfo() {
           scan
         </a>
       </h2>
-      {Object.entries(info)
-        .filter(([key]) => key !== "address")
-        .map(([key, value]) => (
-          <p key={key}>
-            {key}: {value}
-          </p>
-        ))}
-    </div>
+
+      <div className="flex gap-4">
+        <div className="w1/2">
+          <p>ratio: {info.ratio}</p>
+          <p>name: {info.name}</p>
+          <p>symbol: {info.symbol}</p>
+          <p>totalSupply: {info.totalSupply}</p>
+        </div>
+
+        <div className="w1/2">
+          <Purchase ratio={info.ratio} />
+        </div>
+
+        <div className="w1/2">
+          <BalanceOf contractAddress={info.address} />
+        </div>
+      </div>
+    </Card>
   );
 }

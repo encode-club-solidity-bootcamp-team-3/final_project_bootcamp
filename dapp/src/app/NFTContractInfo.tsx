@@ -1,6 +1,7 @@
 import { nftContractAddress } from '@/constants/contracts';
 import { Token } from '@/types/Token';
 import Image from 'next/image'
+import Card from './Card';
 
 export default async function NFTContractInfo() {
   const response = await fetch(
@@ -9,7 +10,7 @@ export default async function NFTContractInfo() {
   const tokens = await response.json();
 
   return (
-    <div className="rounded-lg border border-gray-200 shadow-md p-4 flex flex-col gap-4 bg-white">
+    <Card>
       <h2 className="text-lg font-bold">
         NFT Contract: {nftContractAddress}{" "}
         <a
@@ -28,6 +29,7 @@ export default async function NFTContractInfo() {
               alt={`${token.tokenId} image`}
               height={160}
               width={160}
+              priority
             />
             <p>
               token #{token.tokenId}{" "}
@@ -42,6 +44,6 @@ export default async function NFTContractInfo() {
           </li>
         ))}
       </ul>
-    </div>
+    </Card>
   );
 }

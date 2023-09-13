@@ -1,4 +1,5 @@
 import { lotteryContractAddress } from '@/constants/contracts';
+import Card from './Card';
 
 export default async function LotteryContractInfo() {
   const response = await fetch(
@@ -6,7 +7,7 @@ export default async function LotteryContractInfo() {
   );
 
   return (
-    <div className="rounded-lg border border-gray-200 shadow-md p-4 flex flex-col gap-4 bg-white">
+    <Card>
       <h2 className="text-lg font-bold">
         Lottery Contract: {lotteryContractAddress}{" "}
         <a
@@ -17,7 +18,10 @@ export default async function LotteryContractInfo() {
           scan
         </a>
       </h2>
-      <p>TODO</p>
-    </div>
+      <p>
+        TODO: show lottery status, bet, show prize available for
+        withdraw for each account, ...
+      </p>
+    </Card>
   );
 }
