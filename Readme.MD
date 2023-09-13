@@ -55,9 +55,16 @@ Mint NFT with tokenID 1 [0x0b8c7b8191b793a4c5b61f6f2218cb86365b3c8c48ceb4ddf0aa9
 
 Transfer NFT tokenID = 1 from NFT contract creator to Lottery address [0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8](https://sepolia.etherscan.io/tx/0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8)
 
+This is the image of the Cowboy Capybara:
+
+
 ![Cowboy Capybara](https://github.com/encode-club-solidity-bootcamp-team-3/final_project_bootcamp/blob/main/protocol/pictures/0.png)
 
-![Mexican Capybara](https://github.com/encode-club-solidity-bootcamp-team-3/final_project_bootcamp/blob/main/protocol/pictures/0.png)
+
+And here the Mexican Capybara:
+
+
+![Mexican Capybara](https://github.com/encode-club-solidity-bootcamp-team-3/final_project_bootcamp/blob/main/protocol/pictures/1.png)
 
 
 # Part 2: Lottery actions
