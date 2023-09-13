@@ -63,16 +63,9 @@ Transfer NFT tokenID = 1 from NFT contract creator to Lottery address [0x9524e47
 
 2/ Purchase 20 tokens [0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf](https://sepolia.etherscan.io/tx/0xed5dcdeb41512b89d33c15a722cc53ad1215607eb7aed1985d18019f76cd3dbf)
 
-3/ Open bets 200 seconds for tokenID 200 [0x63dd3c140053595c9ef265b59cf5dc00dda53125c2b3db3e107a413653f1abc4](https://sepolia.etherscan.io/tx/0x63dd3c140053595c9ef265b59cf5dc00dda53125c2b3db3e107a413653f1abc4)
+3/ Open bets 200 seconds for tokenID 0 [0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c](https://sepolia.etherscan.io/tx/0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c)
 
 4/ Close lottery to check that indeed if no one bets, no one gets the NFT 
 [0x76eedca2dc00a8c1a904b09fbc6907c2414e0217088472d5756981b9865021e0](https://sepolia.etherscan.io/tx/0x76eedca2dc00a8c1a904b09fbc6907c2414e0217088472d5756981b9865021e0)
-
-5/ Open bets 200 seconds for tokenID 200 again [0x8bcf06100ece65eafc4b3e3a14748cacf54a62d9b6a95940faa67543fc5ba1e8](https://sepolia.etherscan.io/tx/0x8bcf06100ece65eafc4b3e3a14748cacf54a62d9b6a95940faa67543fc5ba1e8)
-
-6/ Place bet with 12 tokens [0x672ebc5a72cc041ff9227eff73fb325f6e70a22b2872e250a73ffee5dfeae2e3](https://sepolia.etherscan.io/tx/0x672ebc5a72cc041ff9227eff73fb325f6e70a22b2872e250a73ffee5dfeae2e3) 
-
-7/ Close lottery, where we see that once it's closed, NFT with tokenID = 200 gets transferred to the winner   [0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372](https://sepolia.etherscan.io/tx/0xa6e7f4bf3b94f8072b124965496b3f63cdeca18140be39aaaadf23c433955372) 
-
 
 
