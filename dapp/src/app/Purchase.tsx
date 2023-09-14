@@ -1,6 +1,5 @@
 'use client'
 
-import { lotteryContractAddress } from "@/constants/contracts";
 import { useDebounce } from "@/hooks/useDebounce";
 import {
   usePrepareContractWrite,
@@ -14,8 +13,10 @@ import Card from "./Card";
 import { LotteryTokenContractInfo as ILotteryTokenContractInfo } from "@/types/LotteryTokenContractInfo";
 
 export function Purchase({
+  contractAddress,
   lotteryTokenContractInfo,
 }: {
+  contractAddress: `0x${string}`;
   lotteryTokenContractInfo: ILotteryTokenContractInfo;
 }) {
   const [amount, setAmount] = useState("");
@@ -25,7 +26,7 @@ export function Purchase({
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    address: lotteryContractAddress,
+    address: contractAddress,
     abi: lotteryJson.abi,
     functionName: "purchaseTokens",
     args: [debouncedAmount * decimals],

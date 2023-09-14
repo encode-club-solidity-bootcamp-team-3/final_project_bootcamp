@@ -1,13 +1,16 @@
-import { lotteryContractAddress } from '@/constants/contracts';
 import { LotteryTokenContractInfo as ILotteryTokenContractInfo } from '@/types/LotteryTokenContractInfo';
 import Card from './Card';
 import { Purchase } from './Purchase';
 import { BalanceOf } from './BalanceOf';
 import { shortenAddress } from '@/utils/shortenAddress';
 
-export default async function LotteryTokenContractInfo() {
+export default async function LotteryTokenContractInfo({
+  contractAddress,
+}: {
+  contractAddress: `0x${string}`;
+}) {
   const response = await fetch(
-    `http://localhost:3001/lottery-token-contract-info/${lotteryContractAddress}`
+    `http://localhost:3001/lottery-token-contract-info/${contractAddress}`
   );
   const info: ILotteryTokenContractInfo = await response.json();
 
@@ -32,7 +35,10 @@ export default async function LotteryTokenContractInfo() {
           {/* <p>totalSupply: {info.totalSupply}</p> */}
         </Card>
 
-        <Purchase lotteryTokenContractInfo={info} />
+        <Purchase
+          contractAddress={contractAddress}
+          lotteryTokenContractInfo={info}
+        />
       </div>
     </Card>
   );

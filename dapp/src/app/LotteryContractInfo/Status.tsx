@@ -1,4 +1,3 @@
-import { lotteryContractAddress } from '@/constants/contracts';
 import Card from '../Card';
 import { LotteryContractInfo } from '@/types/LotteryContractInfo';
 
