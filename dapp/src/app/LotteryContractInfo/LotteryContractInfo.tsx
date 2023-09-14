@@ -3,8 +3,8 @@ import Card from '../Card';
 import Prize from './Prize';
 import Status from './Status';
 import { Bet } from './Bet';
-import PrizeAvailableForWithdrawForEachAccount from './PrizeAvailableForWithdrawForEachAccount';
 import { LotteryContractInfo } from '@/types/LotteryContractInfo';
+import LotteryTokenContractInfo from '../LotteryTokenContractInfo';
 
 export default async function LotteryContractInfo() {
   const response = await fetch(
@@ -24,11 +24,11 @@ export default async function LotteryContractInfo() {
           scan
         </a>
       </h2>
-      <div className="grid grid-cols-3 gap-4 break-words">
+      <div className="grid grid-cols-2 gap-4 break-words">
         <Prize lotteryContractInfo={data} />
         <Status lotteryContractInfo={data} />
+        <LotteryTokenContractInfo />
         <Bet />
-        <PrizeAvailableForWithdrawForEachAccount lotteryContractInfo={data} />
       </div>
     </Card>
   );

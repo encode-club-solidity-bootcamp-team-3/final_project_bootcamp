@@ -1,5 +1,6 @@
 import { Token } from '@/types/Token';
 import Image from 'next/image'
+import Link from 'next/link';
 
 export default function NFTCard({ contractAddress, token }: { contractAddress: string, token: Token }) {
   return (
@@ -20,6 +21,14 @@ export default function NFTCard({ contractAddress, token }: { contractAddress: s
         >
           scan
         </a>
+      </p>
+      <p>
+        <Link
+          className="text-blue-500 hover:underline"
+          href={`/collection/${contractAddress}`}
+        >
+          see collection
+        </Link>
       </p>
     </div>
   );
