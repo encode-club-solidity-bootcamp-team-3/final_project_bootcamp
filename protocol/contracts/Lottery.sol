@@ -127,17 +127,34 @@
         }
 
         /// @notice Withdraws `amount` from that accounts's prize pool
-        function prizeWithdraw() external {
+        function prizeWithdraw(uint256 amount) external {
             require(
                 nftAddress != address(0) && nftTokenId != 0,
                 "NFT address and tokenId must be set"
             );
+            // Check if the sender is the winner by comparing their address to the winner's address
+            address winner = _getWinner();
+            require(msg.sender == winner, "Only the winner can withdraw the prize");
+
+            // Transfer the prize amount to the sender 
             CapybaraToken nftContract = CapybaraToken(nftAddress);
             nftContract.transferNFT(address(this), msg.sender, nftTokenId);
 
             betsOpen = false;
         }
 
+        /// @notice Returns the address of the winner
+        function _getWinner() internal view returns (address) {
+            require(!betsOpen, "Lottery is still open");
+            require(block.timestamp >= betsClosingTime, "Lottery has not closed yet");
+
+            if (_slots.length > 0) {
+                uint256 winnerIndex = getRandomNumber() % _slots.length;
+                return _slots[winnerIndex];
+            } else {
+                return address(0);
+            }
+        }
         function getPrize(address account) external view returns (uint256) {
         return prize[account];
     }
