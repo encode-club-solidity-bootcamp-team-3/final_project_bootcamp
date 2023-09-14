@@ -214,6 +214,8 @@ export class AppService {
 
     const betsOpen = await lotteryContract.betsOpen();
     const betsClosingTime = await lotteryContract.betsClosingTime();
+    const betPrice = await lotteryContract.betPrice();
+    const betFee = await lotteryContract.betFee();
 
     const nftAddress = await lotteryContract.nftAddress();
     const nftTokenId = await lotteryContract.nftTokenId();
@@ -234,6 +236,8 @@ export class AppService {
     return {
       ownerPool: Number(ownerPool),
       prizePool: Number(prizePool),
+      betPrice: Number(betPrice),
+      betFee: Number(betFee),
       status: {
         betsOpen,
         betsClosingTime: Number(betsClosingTime),

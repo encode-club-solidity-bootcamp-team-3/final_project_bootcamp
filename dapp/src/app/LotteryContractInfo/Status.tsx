@@ -1,3 +1,4 @@
+import { decimals } from '@/constants/decimals';
 import Card from '../Card';
 import { LotteryContractInfo } from '@/types/LotteryContractInfo';
 
@@ -16,7 +17,7 @@ export default function Status({
 }: {
   lotteryContractInfo: LotteryContractInfo;
 }) {
-  const { status, ownerPool, prizePool } = lotteryContractInfo;
+  const { status, ownerPool, prizePool, betPrice, betFee } = lotteryContractInfo;
   const betsClosingTimeDate = new Date(status.betsClosingTime * 1000);
   const now = new Date();
   
@@ -32,6 +33,8 @@ export default function Status({
       </p>
       <p>ownerPool: {ownerPool}</p>
       <p>prizePool: {prizePool}</p>
+      <p>betPrice: {betPrice / decimals}</p>
+      <p>betFee: {betFee / decimals}</p>
     </Card>
   );
 }
