@@ -82,4 +82,13 @@ And here the Mexican Capybara:
 
 5/ Open bets for 1 hour for tokenID 0 [0x0f918d451cb430d51a938ae44c38e5070ecee9159cf663a6781652964b77953d](https://sepolia.etherscan.io/tx/0x0f918d451cb430d51a938ae44c38e5070ecee9159cf663a6781652964b77953d)
 
+# Part 3: Dapp
 
+Users can connect to the dapp and purchase lottery tokens.
+They see their balance of lottery tokens.
+They see the allowance of lottery tokens available to bet.
+They can bet
+
+The administration is done through scripts:
+- open bets
+- close bets
