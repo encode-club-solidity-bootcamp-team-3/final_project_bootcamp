@@ -8,10 +8,10 @@ async function main() {
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
 
     // Replace with the actual contract and token addresses
-    const lotteryContractAddress = '0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7';
-    
+    const lotteryContractAddress = '0xF377364D038e9053a6750392Df1734A3A6Ced2d3';
+
     // Load the contract and contract token ABIs from the JSON files
-    const lotteryContractABI = require('../artifacts/contracts/Lottery.sol/Lottery.json').abi;
+    const lotteryContractABI = require('../artifacts/contracts/Lottery.sol/LotteryNEW.json').abi;
   
     // Create instances of the contracts
     const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet);
