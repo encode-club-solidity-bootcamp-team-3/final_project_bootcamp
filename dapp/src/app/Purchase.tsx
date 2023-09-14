@@ -11,7 +11,6 @@ import lotteryJson from "../contracts/Lottery.json";
 import { ChangeEvent, useState } from "react";
 import { decimals } from "@/constants/decimals";
 import Card from "./Card";
-import { useBalanceOfLotteryToken } from "@/hooks/useBalanceOfLotteryToken";
 import { LotteryTokenContractInfo as ILotteryTokenContractInfo } from "@/types/LotteryTokenContractInfo";
 
 export function Purchase({
@@ -21,7 +20,6 @@ export function Purchase({
 }) {
   const [amount, setAmount] = useState("");
   const debouncedAmount = useDebounce(Number(amount));
-  const { refetch } = useBalanceOfLotteryToken(lotteryTokenContractInfo.address);
   const {
     config,
     error: prepareError,
@@ -38,8 +36,6 @@ export function Purchase({
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-
-  if (isSuccess) refetch();
 
   return (
     <Card>
