@@ -92,3 +92,15 @@ They can bet
 The administration is done through scripts:
 - open bets
 - close bets
+
+The frontend is a raw installation of nextjs with typescript and tailwind.
+And these wonderfull tools:
+https://www.rainbowkit.com/
+https://wagmi.sh/
+
+To run the frontend:
+- install the deps: yarn
+- create config file: cp .env.example .env.local
+and fill your information
+- run the app: yarn dev
+- frontend expects backend api to be running on port 3001
