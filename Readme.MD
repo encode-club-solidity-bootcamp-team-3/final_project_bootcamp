@@ -47,13 +47,13 @@ We've devided it in two parts: NFT deployment, minting and transfering, and Lott
 1/ Deploy NFT [0x6e3d6ca1d912e4d1cb7da50f3624a863e21870b388ce703b150e432b3c5926e5](https://sepolia.etherscan.io/tx/0x6e3d6ca1d912e4d1cb7da50f3624a863e21870b388ce703b150e432b3c5926e5)  
 - NFT contract [0x9e78c2453ca42856ca88215a0d30d19f45107715](https://sepolia.etherscan.io/address/0x9e78c2453ca42856ca88215a0d30d19f45107715)
 
-2/ Mint NFT with tokenID 0 [0xe41acf2de5936303f5c5d0dc1bb105fcaf69f4a9497219f5f260f6e825243e8c](https://sepolia.etherscan.io/tx/0xe41acf2de5936303f5c5d0dc1bb105fcaf69f4a9497219f5f260f6e825243e8c) 
+2/ Mint NFT with tokenID 0 [0xd33e4fce59f37b267c04be2f7edb54b34b550629bedd8d776072fac405c70ff7](https://sepolia.etherscan.io/tx/0xd33e4fce59f37b267c04be2f7edb54b34b550629bedd8d776072fac405c70ff7) 
 
-Mint NFT with tokenID 1 [0x0b8c7b8191b793a4c5b61f6f2218cb86365b3c8c48ceb4ddf0aa9f49b54405f0](https://sepolia.etherscan.io/tx/0x0b8c7b8191b793a4c5b61f6f2218cb86365b3c8c48ceb4ddf0aa9f49b54405f0) 
+Mint NFT with tokenID 1 [0x9e6f8cc4fdea36345621355135829ffb406291c457ef1e42496ed42b3f9e4691](https://sepolia.etherscan.io/tx/0x9e6f8cc4fdea36345621355135829ffb406291c457ef1e42496ed42b3f9e4691) 
 
 3/ Transfer NFT tokenID = 0 from NFT contract creator to Lottery address [0x33e3da7ae0bf87f1d373cdfad3fd313ee0eea30300fbcbd6129329e5928139b9](https://sepolia.etherscan.io/tx/0x33e3da7ae0bf87f1d373cdfad3fd313ee0eea30300fbcbd6129329e5928139b9)
 
-Transfer NFT tokenID = 1 from NFT contract creator to Lottery address [0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8](https://sepolia.etherscan.io/tx/0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8)
+Transfer NFT tokenID = 1 from NFT contract creator to Lottery address [0x7079113f00b8749fd18b4135f2ec5975d90550a2a8f7266450af2d628d1a0b48](https://sepolia.etherscan.io/tx/0x7079113f00b8749fd18b4135f2ec5975d90550a2a8f7266450af2d628d1a0b48)
 
 This is the image of the Cowboy Capybara:
 
@@ -69,15 +69,17 @@ And here the Mexican Capybara:
 
 # Part 2: Lottery actions
 
-1/ Deploy Lottery [0xb0cca3163776dbc1566ff6c3a21bfe84fd555d38efcb3103aad31b18057a5cca](https://sepolia.etherscan.io/tx/0xb0cca3163776dbc1566ff6c3a21bfe84fd555d38efcb3103aad31b18057a5cca)
-- Lottery contract [0x80e91b9742b2874c0ab3b8d766cbe318b71335eb](https://sepolia.etherscan.io/address/0x80e91b9742b2874c0ab3b8d766cbe318b71335eb)
-- Lottery Token contract [0x434be57C2168C0AC839091EB79d25A7Cdbd7088D](https://sepolia.etherscan.io/address/0x434be57C2168C0AC839091EB79d25A7Cdbd7088D)
+1/ Deploy Lottery [0x6e3d6ca1d912e4d1cb7da50f3624a863e21870b388ce703b150e432b3c5926e5](https://sepolia.etherscan.io/tx/0x6e3d6ca1d912e4d1cb7da50f3624a863e21870b388ce703b150e432b3c5926e5)
+- Lottery contract [0xf377364d038e9053a6750392df1734a3a6ced2d3](https://sepolia.etherscan.io/address/0xf377364d038e9053a6750392df1734a3a6ced2d3)
+- Lottery Token contract [0xc60BFd5a59AB4fDd136B28637631947160C25B20](https://sepolia.etherscan.io/address/0xc60BFd5a59AB4fDd136B28637631947160C25B20)
 
-2/ Purchase 30 tokens [0xfd9286124ea49f16cfe2014d347ed7620a237a3314d916291038eb5abbcb6e50](https://sepolia.etherscan.io/tx/0xfd9286124ea49f16cfe2014d347ed7620a237a3314d916291038eb5abbcb6e50)
+2/ Purchase tokens [0x6b0502be077719750674b68a4215b56c8ba74435622f7bca09ebd449bd0a4b15](https://sepolia.etherscan.io/tx/0x6b0502be077719750674b68a4215b56c8ba74435622f7bca09ebd449bd0a4b15)
 
-3/ Open bets 200 seconds for tokenID 0 [0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c](https://sepolia.etherscan.io/tx/0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c)
+3/ Open bets 100 seconds for tokenID 0 [0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c](https://sepolia.etherscan.io/tx/0x8e9f0e259681932868f589c333f09cf34224263e49d197175700f0f7042be97c)
 
 4/ Close lottery to check that indeed if no one bets, no one gets the NFT 
-[0x76eedca2dc00a8c1a904b09fbc6907c2414e0217088472d5756981b9865021e0](https://sepolia.etherscan.io/tx/0x76eedca2dc00a8c1a904b09fbc6907c2414e0217088472d5756981b9865021e0)
+[0x3de7fee929a3f8bc5f42192b74d4aad2ed653f7b64faf96ff4ba949777760fd4](https://sepolia.etherscan.io/tx/0x3de7fee929a3f8bc5f42192b74d4aad2ed653f7b64faf96ff4ba949777760fd4)
+
+5/ Open bets for 1 hour for tokenID 0 [0x0f918d451cb430d51a938ae44c38e5070ecee9159cf663a6781652964b77953d](https://sepolia.etherscan.io/tx/0x0f918d451cb430d51a938ae44c38e5070ecee9159cf663a6781652964b77953d)
 
 
