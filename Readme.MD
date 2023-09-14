@@ -44,14 +44,14 @@ We've devided it in two parts: NFT deployment, minting and transfering, and Lott
 
 # Part 1: Deploy NFT
  
-1/ Deploy NFT [0x1aa1ecf1b6cc5c1e354d3d0931393ba517cc7410cbd35405587e4e64de4badc7](https://sepolia.etherscan.io/tx/0x1aa1ecf1b6cc5c1e354d3d0931393ba517cc7410cbd35405587e4e64de4badc7)  
-- NFT contract [0x973cf347cc98b9e264843522e8cdf61d776465ee](https://sepolia.etherscan.io/address/0x973cf347cc98b9e264843522e8cdf61d776465ee)
+1/ Deploy NFT [0x6e3d6ca1d912e4d1cb7da50f3624a863e21870b388ce703b150e432b3c5926e5](https://sepolia.etherscan.io/tx/0x6e3d6ca1d912e4d1cb7da50f3624a863e21870b388ce703b150e432b3c5926e5)  
+- NFT contract [0x9e78c2453ca42856ca88215a0d30d19f45107715](https://sepolia.etherscan.io/address/0x9e78c2453ca42856ca88215a0d30d19f45107715)
 
 2/ Mint NFT with tokenID 0 [0xe41acf2de5936303f5c5d0dc1bb105fcaf69f4a9497219f5f260f6e825243e8c](https://sepolia.etherscan.io/tx/0xe41acf2de5936303f5c5d0dc1bb105fcaf69f4a9497219f5f260f6e825243e8c) 
 
 Mint NFT with tokenID 1 [0x0b8c7b8191b793a4c5b61f6f2218cb86365b3c8c48ceb4ddf0aa9f49b54405f0](https://sepolia.etherscan.io/tx/0x0b8c7b8191b793a4c5b61f6f2218cb86365b3c8c48ceb4ddf0aa9f49b54405f0) 
 
-3/ Transfer NFT tokenID = 0 from NFT contract creator to Lottery address [0xc4fe6a5f4c726eafef38eb58dfffac5b80fd3262bc210caaf2ecbbda5dc5e40f](https://sepolia.etherscan.io/tx/0xc4fe6a5f4c726eafef38eb58dfffac5b80fd3262bc210caaf2ecbbda5dc5e40f)
+3/ Transfer NFT tokenID = 0 from NFT contract creator to Lottery address [0x33e3da7ae0bf87f1d373cdfad3fd313ee0eea30300fbcbd6129329e5928139b9](https://sepolia.etherscan.io/tx/0x33e3da7ae0bf87f1d373cdfad3fd313ee0eea30300fbcbd6129329e5928139b9)
 
 Transfer NFT tokenID = 1 from NFT contract creator to Lottery address [0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8](https://sepolia.etherscan.io/tx/0x9524e4792c20d6ab01f7b61aaabe4b9c720d5027bfe98df888c38f91d8da8cf8)
 
