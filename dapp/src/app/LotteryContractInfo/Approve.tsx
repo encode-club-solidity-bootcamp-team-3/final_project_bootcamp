@@ -1,23 +1,22 @@
-'use client'
+"use client";
 
-import { useDebounce } from "@/hooks/useDebounce";
+import Card from "../Card";
 import {
-  usePrepareContractWrite,
   useContractWrite,
+  usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import lotteryJson from "../contracts/Lottery.json";
-import { ChangeEvent, useState } from "react";
-import { decimals } from "@/constants/decimals";
-import Card from "./Card";
+import lotteryTokenJson from "../../contracts/LotteryToken.json";
 import { LotteryTokenContractInfo as ILotteryTokenContractInfo } from "@/types/LotteryTokenContractInfo";
+import { ChangeEvent, useState } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
 
-export function Purchase({
-  contractAddress,
+export default function Approve({
   lotteryTokenContractInfo,
+  contractAddress: lotteryContractAddress,
 }: {
-  contractAddress: `0x${string}`;
   lotteryTokenContractInfo: ILotteryTokenContractInfo;
+  contractAddress: `0x${string}`;
 }) {
   const [amount, setAmount] = useState("");
   const debouncedAmount = useDebounce(Number(amount));
@@ -26,10 +25,10 @@ export function Purchase({
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    address: contractAddress,
-    abi: lotteryJson.abi,
-    functionName: "purchaseTokens",
-    args: [debouncedAmount * decimals],
+    address: lotteryTokenContractInfo.address,
+    abi: lotteryTokenJson.abi,
+    functionName: "approve",
+    args: [lotteryContractAddress, debouncedAmount/*  * decimals */],
     enabled: Boolean(debouncedAmount),
   });
   const { data, error, isError, write } = useContractWrite(config);
@@ -37,10 +36,9 @@ export function Purchase({
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-
   return (
     <Card>
-      <h2 className="text-lg font-bold">Need lottery tokens?</h2>
+      <h2 className="text-lg font-bold">Need to allow?</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -55,9 +53,7 @@ export function Purchase({
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setAmount(e.target.value)
             }
-            placeholder={`${
-              1 / lotteryTokenContractInfo.ratio
-            } eth buys 1 token`}
+            placeholder="amount to allow"
             value={amount}
           />
           <button
@@ -65,12 +61,12 @@ export function Purchase({
             type="submit"
             className="p-y2 px-3 border border-gray-400 rounded hover:bg-slate-100 hover:cursor-pointer"
           >
-            {isLoading ? "Purchasing..." : "Purchase"}
+            {isLoading ? "Allowing..." : "Allow"}
           </button>
         </div>
         {isSuccess && (
           <div>
-            Successfully purchased your tokens!
+            Successfully allowed your tokens!
             <div>
               <a
                 href={`https://sepolia.etherscan.io/tx/${data?.hash}`}

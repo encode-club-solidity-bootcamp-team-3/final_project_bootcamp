@@ -1,85 +1,47 @@
 'use client'
 
 import {
-  usePrepareContractWrite,
-  useContractWrite,
-  useWaitForTransaction,
   useContractRead,
+  useAccount,
 } from "wagmi";
-import lotteryJson from "../../contracts/Lottery.json";
 import lotteryTokenJson from "../../contracts/LotteryToken.json";
 import Card from "../Card";
-// import LotteryTokenContractInfo from "../LotteryTokenContractInfo";
-import { LotteryContractInfo } from "@/types/LotteryContractInfo";
+import { LotteryTokenContractInfo as ILotteryTokenContractInfo } from "@/types/LotteryTokenContractInfo";
+import PlaceBet from "./PlaceBet";
+import Approve from "./Approve";
 
 export function Bet({
   contractAddress: lotteryContractAddress,
-  lotteryContractInfo,
+  lotteryTokenContractInfo,
 }: {
   contractAddress: `0x${string}`;
-  lotteryContractInfo: LotteryContractInfo;
+  lotteryTokenContractInfo: ILotteryTokenContractInfo;
 }) {
-  const {
-    data: allowanceData,
-    isLoading: allowanceIsLoading,
-    isFetching: allowanceIsFetching,
-    isRefetching: allowanceIsRefetching,
-  } = useContractRead({
-    address: lotteryContractAddress,
+  const { address } = useAccount();
+  const {data} = useContractRead({
+    address: lotteryTokenContractInfo.address,
     abi: lotteryTokenJson.abi,
     functionName: "allowance",
     watch: true,
-    // signerOrProvider: signer,
-  });
-
-  console.log(allowanceData, allowanceIsLoading, allowanceIsFetching, allowanceIsRefetching);
-
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    address: lotteryContractAddress,
-    abi: lotteryJson.abi,
-    functionName: "bet",
-    enabled: true,
-  });
-  const { data, error, isError, write } = useContractWrite(config);
-
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
+    args: [address, lotteryContractAddress],
   });
 
   return (
     <Card>
       <h2 className="text-lg font-bold">Bet</h2>
-      <button
-        disabled={!write || isLoading}
-        type="submit"
-        className="self-start p-y2 px-3 border border-gray-400 rounded hover:bg-slate-100 hover:cursor-pointer"
-        onClick={() => write?.()}
-      >
-        {isLoading ? "Betting..." : "Bet"}
-      </button>
-      {isSuccess && (
-        <div>
-          Successfully bet!
-          <div>
-            <a
-              href={`https://sepolia.etherscan.io/tx/${data?.hash}`}
-              className="text-blue-500 hover:underline"
-              target="_blank"
-            >
-              Sepolia Testnet Explorer
-            </a>
-          </div>
-        </div>
-      )}
-      {(isPrepareError || isError) && (
-        <div className="text-red-500">
-          Error: {(prepareError || error)?.message}
-        </div>
-      )}
+      <p>Allowance: {data ? Number(data) : 0}</p>
+      <div className="grid grid-cols-2 gap-4 break-words">
+        <Approve
+          lotteryTokenContractInfo={lotteryTokenContractInfo}
+          contractAddress={lotteryContractAddress}
+        />
+        {Number(data) > 0 && (
+          <PlaceBet
+            allowance={Number(data)}
+            contractAddress={lotteryContractAddress}
+          />
+        )}
+      </div>
     </Card>
   );
 }
