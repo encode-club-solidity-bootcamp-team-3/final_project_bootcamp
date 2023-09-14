@@ -26,10 +26,10 @@ export default async function LotteryTokenContractInfo() {
       <div className="grid grid-cols-3 gap-4 break-words">
         <Card>
           <p>symbol: {info.symbol}</p>
-          <p>totalSupply: {info.totalSupply}</p>
+          {/* <p>totalSupply: {info.totalSupply}</p> */}
         </Card>
 
-        <Purchase ratio={info.ratio} />
+        <Purchase lotteryTokenContractInfo={info} />
 
         <BalanceOf contractAddress={info.address} />
       </div>

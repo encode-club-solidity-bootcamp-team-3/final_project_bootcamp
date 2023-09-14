@@ -11,11 +11,17 @@ import lotteryJson from "../contracts/Lottery.json";
 import { ChangeEvent, useState } from "react";
 import { decimals } from "@/constants/decimals";
 import Card from "./Card";
+import { useBalanceOfLotteryToken } from "@/hooks/useBalanceOfLotteryToken";
+import { LotteryTokenContractInfo as ILotteryTokenContractInfo } from "@/types/LotteryTokenContractInfo";
 
-export function Purchase({ratio}: {ratio: number}) {
-  const [amount, setAmount] = useState('');
+export function Purchase({
+  lotteryTokenContractInfo,
+}: {
+  lotteryTokenContractInfo: ILotteryTokenContractInfo;
+}) {
+  const [amount, setAmount] = useState("");
   const debouncedAmount = useDebounce(Number(amount));
-
+  const { refetch } = useBalanceOfLotteryToken(lotteryTokenContractInfo.address);
   const {
     config,
     error: prepareError,
@@ -32,6 +38,8 @@ export function Purchase({ratio}: {ratio: number}) {
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
+
+  if (isSuccess) refetch();
 
   return (
     <Card>
@@ -50,7 +58,9 @@ export function Purchase({ratio}: {ratio: number}) {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setAmount(e.target.value)
             }
-            placeholder={`${1 / ratio} eth buys 1 token`}
+            placeholder={`${
+              1 / lotteryTokenContractInfo.ratio
+            } eth buys 1 token`}
             value={amount}
           />
           <button
