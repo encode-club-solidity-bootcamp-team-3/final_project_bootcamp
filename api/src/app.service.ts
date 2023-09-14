@@ -3,9 +3,14 @@ import { ethers } from 'ethers';
 import * as lotteryJson from './assets/Lottery.json';
 import * as lotteryTokenJson from './assets/LotteryToken.json';
 import * as nftContractJson from './assets/NFTContract.json';
+import * as capybaraTokenJson from './assets/CapybaraToken.json';
 
-const LOTTERY_ADDRESS = '0xA2F5753e4c9077D77621364B3dD09F144A06a6C6';
-const LOTTERY_TOKEN_ADDRESS = '0x33f34416c51789e35Cd226028253b7e4C8A9efa3';
+// const LOTTERY_ADDRESS = '0xA2F5753e4c9077D77621364B3dD09F144A06a6C6';
+// const LOTTERY_TOKEN_ADDRESS = '0x33f34416c51789e35Cd226028253b7e4C8A9efa3';
+// const LOTTERY_ADDRESS = '0x80E91B9742B2874c0ab3b8d766CbE318b71335eB';
+// const LOTTERY_TOKEN_ADDRESS = '0x434be57C2168C0AC839091EB79d25A7Cdbd7088D';
+const LOTTERY_ADDRESS = '0xF377364D038e9053a6750392Df1734A3A6Ced2d3';
+const LOTTERY_TOKEN_ADDRESS = '0xc60BFd5a59AB4fDd136B28637631947160C25B20';
 const DECIMALS = 1_000_000_000_000_000_000;
 
 @Injectable()
@@ -197,6 +202,49 @@ export class AppService {
       name: paymentTokenName,
       symbol: `$${paymentTokenSymbol}`,
       totalSupply: Number(paymentTokenTotalSupply) / DECIMALS,
+    };
+  }
+
+  async lotteryInfo(lotteryContractAddress: string) {
+    const lotteryContract = new ethers.Contract(
+      lotteryContractAddress,
+      lotteryJson.abi,
+      this.provider,
+    );
+
+    const betsOpen = await lotteryContract.betsOpen();
+    const betsClosingTime = await lotteryContract.betsClosingTime();
+
+    const nftAddress = await lotteryContract.nftAddress();
+    const nftTokenId = await lotteryContract.nftTokenId();
+    const prizePool = await lotteryContract.prizePool();
+    const ownerPool = await lotteryContract.ownerPool();
+
+    const capybaraTokenContract = new ethers.Contract(
+      nftAddress,
+      capybaraTokenJson.abi,
+      this.provider,
+    );
+
+    const tokenUri = await capybaraTokenContract.tokenURI(nftTokenId);
+    const ipfsUrl = tokenUri
+      ? `https://ipfs.io/ipfs/${tokenUri.split('//')[1]}`
+      : null;
+
+    return {
+      ownerPool: Number(ownerPool),
+      prizePool: Number(prizePool),
+      status: {
+        betsOpen,
+        betsClosingTime: Number(betsClosingTime),
+      },
+      prize: {
+        nftAddress,
+        token: {
+          tokenId: Number(nftTokenId),
+          ipfsUrl,
+        },
+      },
     };
   }
 }

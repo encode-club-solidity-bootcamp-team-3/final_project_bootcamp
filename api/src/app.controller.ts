@@ -74,4 +74,10 @@ export class AppController {
   ) {
     return this.appService.lotteryTokenContractInfo(lotteryContractAddress);
   }
+  @Get('lottery-contract-info/:lotteryContractAddress')
+  async lotteryInfo(
+    @Param('lotteryContractAddress') lotteryContractAddress: string,
+  ) {
+    return this.appService.lotteryInfo(lotteryContractAddress);
+  }
 }

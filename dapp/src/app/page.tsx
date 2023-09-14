@@ -1,5 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import LotteryContractInfo from "./LotteryContractInfo";
+import LotteryContractInfo from "./LotteryContractInfo/LotteryContractInfo";
 import LotteryTokenContractInfo from './LotteryTokenContractInfo';
 import NFTContractInfo from './NFTContractInfo';
 

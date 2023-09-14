@@ -43,7 +43,7 @@ export function Purchase({ratio}: {ratio: number}) {
         }}
         className="flex flex-col gap-2"
       >
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <label htmlFor="amount">Amount</label>
           <input
             id="amount"
@@ -76,7 +76,9 @@ export function Purchase({ratio}: {ratio: number}) {
           </div>
         )}
         {(isPrepareError || isError) && (
-          <div>Error: {(prepareError || error)?.message}</div>
+          <div className="text-red-500">
+            Error: {(prepareError || error)?.message}
+          </div>
         )}
       </form>
     </Card>

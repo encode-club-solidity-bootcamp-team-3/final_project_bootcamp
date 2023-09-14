@@ -1,7 +1,7 @@
 import { nftContractAddress } from '@/constants/contracts';
 import { Token } from '@/types/Token';
-import Image from 'next/image'
 import Card from './Card';
+import NFTCard from './NFTCard';
 
 export default async function NFTContractInfo() {
   const response = await fetch(
@@ -24,23 +24,7 @@ export default async function NFTContractInfo() {
       <ul className="flex flex-wrap gap-4">
         {tokens.map((token: Token) => (
           <li key={token.tokenId}>
-            <Image
-              src={token.ipfsUrl}
-              alt={`${token.tokenId} image`}
-              height={160}
-              width={160}
-              priority
-            />
-            <p>
-              token #{token.tokenId}{" "}
-              <a
-                className="text-blue-500 hover:underline"
-                href={`https://sepolia.etherscan.io/nft/${nftContractAddress}/${token.tokenId}`}
-                target="_blank"
-              >
-                scan
-              </a>
-            </p>
+            <NFTCard contractAddress={nftContractAddress} token={token} />
           </li>
         ))}
       </ul>

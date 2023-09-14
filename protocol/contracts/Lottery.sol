@@ -10,7 +10,7 @@
     /// @notice You can use this contract for running a very simple lottery
     /// @dev This contract implements a relatively weak randomness source, since there is no cliff period between the randao reveal and the actual usage in this contract
     /// @custom:teaching This is a contract meant for teaching only
-    contract LotteryNEW is Ownable {
+    contract Lottery is Ownable {
         /// @notice Address of the token used as payment for the bets
         LotteryToken public paymentToken;
         /// @notice Amount of tokens given per ETH paid

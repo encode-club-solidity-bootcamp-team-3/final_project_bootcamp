@@ -1,5 +1,5 @@
 export type LotteryTokenContractInfo = {
-  address: string;
+  address: `0x${string}`;
   ratio: number;
   name: string;
   symbol: string;
