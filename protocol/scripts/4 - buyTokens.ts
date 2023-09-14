@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { Lottery } from "../typechain-types/";
+import { LotteryNEW } from "../typechain-types/";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -8,13 +8,13 @@ async function main() {
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "", provider);
   
   // Replace with the actual contract address
-  const lotteryContractAddress = "0x30d29200fa4d936ddcf1d36bbfcc3a3781c685a7";
+  const lotteryContractAddress = "0xF377364D038e9053a6750392Df1734A3A6Ced2d3";
   
   // Load the contract ABI
-  const lotteryContractABI = require("../artifacts/contracts/Lottery.sol/Lottery.json").abi;
+  const lotteryContractABI = require("../artifacts/contracts/Lottery.sol/LotteryNEW.json").abi;
   
   // Create an instance of the Lottery contract
-  const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet) as unknown as Lottery;
+  const lotteryContract = new ethers.Contract(lotteryContractAddress, lotteryContractABI, wallet) as unknown as LotteryNEW;
   
   const etherAmount = 0.03; // Change this to the desired amount
 
